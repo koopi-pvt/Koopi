@@ -24,7 +24,7 @@ interface WelcomeEmailData {
 
 export async function sendVerificationEmail(data: VerificationEmailData): Promise<boolean> {
   if (!SENDGRID_API_KEY) {
-    console.error('SendGrid API key not configured');
+    console.warn('SendGrid API key not configured - skipping email send');
     return false;
   }
 
@@ -92,21 +92,32 @@ export async function sendVerificationEmail(data: VerificationEmailData): Promis
           </body>
         </html>
       `,
-      text: `Welcome to Koopi, ${data.displayName}!\n\nThank you for creating your account. To complete your registration, please verify your email address by visiting:\n\n${data.verificationLink}\n\nIf you didn't create this account, you can safely ignore this email.\n\n© 2025 Koopi. All rights reserved.`,
+      text: `Welcome to Koopi, ${data.displayName}!
+
+Thank you for creating your account. To complete your registration, please verify your email address by visiting:
+
+${data.verificationLink}
+
+If you didn't create this account, you can safely ignore this email.
+
+© 2025 Koopi. All rights reserved.`,
     };
 
     await sgMail.send(msg);
     console.log('Verification email sent to:', data.to);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending verification email:', error);
+    if (error.response) {
+      console.error('SendGrid API response error:', error.response.body);
+    }
     return false;
   }
 }
 
 export async function sendWelcomeEmail(data: WelcomeEmailData): Promise<boolean> {
   if (!SENDGRID_API_KEY) {
-    console.error('SendGrid API key not configured');
+    console.warn('SendGrid API key not configured - skipping email send');
     return false;
   }
 
@@ -178,14 +189,33 @@ export async function sendWelcomeEmail(data: WelcomeEmailData): Promise<boolean>
           </body>
         </html>
       `,
-      text: `Congratulations, ${data.displayName}!\n\nYour store "${data.storeName}" is now live and ready to accept orders!\n\nYour store URL: ${data.storeUrl}\n\nQuick Start Guide:\n1. Add your first products\n2. Customize your store settings\n3. Upload your store logo\n4. Share your store URL with customers\n\nGo to Dashboard: ${data.dashboardUrl}\n\nNeed help? Reply to this email or contact us at ${process.env.SUPPORT_EMAIL || 'support@koopi.online'}\n\n© 2025 Koopi. All rights reserved.`,
+      text: `Congratulations, ${data.displayName}!
+
+Your store "${data.storeName}" is now live and ready to accept orders!
+
+Your store URL: ${data.storeUrl}
+
+Quick Start Guide:
+1. Add your first products
+2. Customize your store settings
+3. Upload your store logo
+4. Share your store URL with customers
+
+Go to Dashboard: ${data.dashboardUrl}
+
+Need help? Reply to this email or contact us at ${process.env.SUPPORT_EMAIL || 'support@koopi.online'}
+
+© 2025 Koopi. All rights reserved.`,
     };
 
     await sgMail.send(msg);
     console.log('Welcome email sent to:', data.to);
     return true;
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error sending welcome email:', error);
+    if (error.response) {
+      console.error('SendGrid API response error:', error.response.body);
+    }
     return false;
   }
 }

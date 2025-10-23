@@ -122,25 +122,35 @@ export async function POST(request: NextRequest) {
 
     // Send verification email (non-blocking - fire and forget)
     adminAuth.generateEmailVerificationLink(data.email).then(async (link) => {
-      // Send verification email via SendGrid
-      await sendVerificationEmail({
-        to: data.email,
-        displayName: data.displayName,
-        verificationLink: link,
-      });
+      try {
+        // Send verification email via SendGrid
+        const verificationSent = await sendVerificationEmail({
+          to: data.email,
+          displayName: data.displayName,
+          verificationLink: link,
+        });
 
-      // Also send welcome email
-      await sendWelcomeEmail({
-        to: data.email,
-        displayName: data.displayName,
-        storeName: data.storeName,
-        storeUrl,
-        dashboardUrl,
-      });
+        // Also send welcome email
+        const welcomeSent = await sendWelcomeEmail({
+          to: data.email,
+          displayName: data.displayName,
+          storeName: data.storeName,
+          storeUrl,
+          dashboardUrl,
+        });
 
-      console.log('Verification and welcome emails sent to:', data.email);
+        if (verificationSent && welcomeSent) {
+          console.log('Verification and welcome emails sent successfully to:', data.email);
+        } else {
+          console.warn('Failed to send one or more emails to:', data.email);
+          if (!verificationSent) console.warn('Verification email failed to send');
+          if (!welcomeSent) console.warn('Welcome email failed to send');
+        }
+      } catch (emailError) {
+        console.error('Error in email sending process:', emailError);
+      }
     }).catch((error) => {
-      console.error('Failed to send emails:', error);
+      console.error('Failed to generate email verification link:', error);
     });
 
     return NextResponse.json(

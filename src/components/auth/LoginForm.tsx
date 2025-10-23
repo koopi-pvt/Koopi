@@ -63,6 +63,12 @@ export default function LoginForm({ locale }: LoginFormProps) {
         const errorCode = (error as { code: string }).code;
         if (errorCode === 'auth/too-many-requests') {
           errorMessage = 'Too many failed login attempts. Please try again later.';
+        } else if (errorCode === 'auth/invalid-credential') {
+          errorMessage = 'Invalid email or password. Please check your credentials and try again.';
+        } else if (errorCode === 'auth/user-not-found') {
+          errorMessage = 'No account found with this email. Please check your email or sign up.';
+        } else if (errorCode === 'auth/wrong-password') {
+          errorMessage = 'Incorrect password. Please try again.';
         }
       }
       setError(errorMessage);
