@@ -41,6 +41,7 @@ export interface Store {
   returnPolicy?: string;
   logoUrl?: string;
   businessInfo?: BusinessInformation;
+  currency?: string; // Add this line to fix the TS error
 }
 
 export type SerializableStore = Omit<Store, 'trialEndsAt' | 'createdAt' | 'updatedAt'> & {

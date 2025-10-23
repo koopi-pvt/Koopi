@@ -48,6 +48,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
   const [slugStatus, setSlugStatus] = useState<"idle" | "checking" | "available" | "unavailable">("idle");
   const [slugError, setSlugError] = useState("");
+  const [slugSuggestions, setSlugSuggestions] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -63,50 +64,12 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
     if (formData.storeName) {
       const slug = sanitizeSlug(formData.storeName);
       setFormData(prev => ({ ...prev, storeSlug: slug }));
-    }
-  }, [formData.storeName]);
-
-  // Check slug availability
-  useEffect(() => {
-    if (formData.storeSlug.length >= 3) {
-      const timer = setTimeout(async () => {
-        setSlugStatus("checking");
-        setSlugError("");
-        try {
-          const response = await fetch("/api/store/check-slug", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ slug: formData.storeSlug }),
-          });
-
-          const data = await response.json();
-          
-          if (response.ok && data.available) {
-            setSlugStatus("available");
-            setSlugError("");
-          } else {
-            setSlugStatus("unavailable");
-            const randomNum = Math.floor(Math.random() * 9999);
-            const suggestion = `${formData.storeSlug}-${randomNum}`;
-            setSlugError(`Not available. Try: ${suggestion}`);
-          }
-        } catch (error) {
-          // On error, assume available for better UX
-          console.error("Slug check failed:", error);
-          setSlugStatus("available");
-          setSlugError("");
-        }
-      }, 150);
-
-      return () => clearTimeout(timer);
-    } else if (formData.storeSlug.length > 0 && formData.storeSlug.length < 3) {
-      setSlugStatus("unavailable");
-      setSlugError("Minimum 3 characters required");
-    } else {
+      // Reset slug status when store name changes
       setSlugStatus("idle");
       setSlugError("");
+      setSlugSuggestions([]);
     }
-  }, [formData.storeSlug]);
+  }, [formData.storeName]);
 
   // Check password strength
   useEffect(() => {
@@ -144,10 +107,38 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
   // Validation for each step
   const canProceedToStep2 = formData.email && formData.password && formData.displayName && isPasswordStrong;
-  const canProceedToStep3 = formData.storeName && formData.storeSlug && slugStatus === "available";
+  const canProceedToStep3 = formData.storeName && formData.storeSlug.length >= 3;
   const canProceedToStep4 = true; // Business info is optional
 
-  const handleNext = () => {
+  // Function to generate slug suggestions
+  const generateSlugSuggestions = (baseSlug: string): string[] => {
+    const suggestions: string[] = [];
+    for (let i = 0; i < 5; i++) {
+      const randomNum = Math.floor(1000 + Math.random() * 9000);
+      suggestions.push(`${baseSlug}-${randomNum}`);
+    }
+    return suggestions;
+  };
+
+  // Check slug availability
+  const checkSlugAvailability = async (slug: string): Promise<boolean> => {
+    try {
+      const response = await fetch("/api/store/check-slug", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ slug }),
+      });
+
+      const data = await response.json();
+      return response.ok && data.available;
+    } catch (error) {
+      console.error("Slug check failed:", error);
+      // On error, assume available for better UX
+      return true;
+    }
+  };
+
+  const handleNext = async () => {
     setError("");
     
     if (currentStep === 1 && !canProceedToStep2) {
@@ -155,9 +146,29 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
       return;
     }
     
-    if (currentStep === 2 && !canProceedToStep3) {
-      setError("Please complete store details with an available slug");
-      return;
+    if (currentStep === 2) {
+      // Validate basic requirements
+      if (!canProceedToStep3) {
+        setError("Please complete store details. Slug must be at least 3 characters.");
+        return;
+      }
+      
+      // Check slug availability on submit
+      setSlugStatus("checking");
+      setSlugError("");
+      setSlugSuggestions([]);
+      
+      const isAvailable = await checkSlugAvailability(formData.storeSlug);
+      
+      if (!isAvailable) {
+        setSlugStatus("unavailable");
+        const suggestions = generateSlugSuggestions(formData.storeSlug);
+        setSlugSuggestions(suggestions);
+        setSlugError("This slug is already taken. Here are some available alternatives:");
+        return; // Stay on step 2
+      }
+      
+      setSlugStatus("available");
     }
     
     setCurrentStep(prev => Math.min(prev + 1, totalSteps));
@@ -405,26 +416,52 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
             <label className="block text-lg font-medium text-gray-700 mb-1.5">
               Store URL
             </label>
-            <div className="flex items-center gap-2">
-              <input
-                type="text"
-                required
-                value={formData.storeSlug}
-                onChange={(e) => setFormData({ ...formData, storeSlug: sanitizeSlug(e.target.value) })}
-                className="flex-1 px-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
-                placeholder="my-store"
-              />
-              {slugStatus === "checking" && <Loader2 className="w-5 h-5 text-blue-600 animate-spin" />}
-              {slugStatus === "available" && <Check className="w-5 h-5 text-green-600" />}
-              {slugStatus === "unavailable" && <X className="w-5 h-5 text-red-500" />}
-            </div>
-            {formData.storeSlug && (
+            <input
+              type="text"
+              required
+              value={formData.storeSlug}
+              onChange={(e) => {
+                setFormData({ ...formData, storeSlug: sanitizeSlug(e.target.value) });
+                // Reset status when user types
+                setSlugStatus("idle");
+                setSlugError("");
+                setSlugSuggestions([]);
+              }}
+              className="w-full px-4 py-2.5 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 placeholder-gray-400"
+              placeholder="my-store"
+            />
+            {formData.storeSlug && formData.storeSlug.length < 3 && (
+              <p className="mt-1.5 text-sm text-amber-600">Minimum 3 characters required</p>
+            )}
+            {formData.storeSlug && formData.storeSlug.length >= 3 && (
               <p className="mt-1.5 text-lg text-gray-600">
                 Your store will be: <span className="font-medium text-blue-600">{formData.storeSlug}.{baseDomain}</span>
               </p>
             )}
-            {slugError && (
-              <p className="mt-1.5 text-lg text-red-600">{slugError}</p>
+            
+            {/* Slug Error and Suggestions */}
+            {slugError && slugSuggestions.length > 0 && (
+              <div className="mt-3 p-4 bg-red-50 border border-red-200 rounded-lg">
+                <p className="text-base font-medium text-red-800 mb-3">{slugError}</p>
+                <div className="space-y-2">
+                  {slugSuggestions.map((suggestion, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => {
+                        setFormData({ ...formData, storeSlug: suggestion });
+                        setSlugStatus("idle");
+                        setSlugError("");
+                        setSlugSuggestions([]);
+                      }}
+                      className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg text-left hover:bg-blue-50 hover:border-blue-400 transition-all flex items-center justify-between group"
+                    >
+                      <span className="text-gray-900 font-medium">{suggestion}.{baseDomain}</span>
+                      <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+                    </button>
+                  ))}
+                </div>
+              </div>
             )}
           </div>
 
@@ -480,11 +517,20 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
             </button>
             <button
               onClick={handleNext}
-              disabled={!canProceedToStep3}
+              disabled={!canProceedToStep3 || slugStatus === "checking"}
               className="flex-1 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed flex items-center justify-center gap-2"
             >
-              Continue
-              <ArrowRight className="w-5 h-5" />
+              {slugStatus === "checking" ? (
+                <>
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                  Checking...
+                </>
+              ) : (
+                <>
+                  Continue
+                  <ArrowRight className="w-5 h-5" />
+                </>
+              )}
             </button>
           </div>
         </div>
