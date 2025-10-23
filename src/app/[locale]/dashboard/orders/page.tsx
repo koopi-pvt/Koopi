@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import { useParams } from 'next/navigation';
+import Link from 'next/link';
 import { ShoppingCart, Package, Loader2, Eye, CheckCircle, Clock, XCircle, Truck, Filter } from 'lucide-react';
 import EmptyState from '@/components/dashboard/EmptyState';
 import { useUser } from '@/contexts/UserContext';
@@ -31,14 +33,13 @@ interface Order {
 
 export default function OrdersPage() {
   const t = useTranslations('Dashboard');
+  const params = useParams();
   const { store } = useUser();
   const toast = useToast();
   const [orders, setOrders] = useState<Order[]>([]);
   const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [updatingStatus, setUpdatingStatus] = useState(false);
 
   useEffect(() => {
     if (store?.storeId) {
@@ -71,34 +72,6 @@ export default function OrdersPage() {
       console.error('Error fetching orders:', error);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const updateOrderStatus = async (orderId: string, newStatus: string) => {
-    setUpdatingStatus(true);
-    try {
-      const response = await fetch(`/api/orders/${orderId}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ orderStatus: newStatus }),
-      });
-
-      if (response.ok) {
-        // Refresh orders
-        await fetchOrders();
-        // Update selected order if it's the one being updated
-        if (selectedOrder && selectedOrder.orderId === orderId) {
-          setSelectedOrder({ ...selectedOrder, orderStatus: newStatus });
-        }
-        toast.success('Order status updated successfully');
-      } else {
-        toast.error('Failed to update order status');
-      }
-    } catch (error) {
-      console.error('Error updating order status:', error);
-      toast.error('Failed to update order status');
-    } finally {
-      setUpdatingStatus(false);
     }
   };
 
@@ -281,12 +254,13 @@ export default function OrdersPage() {
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button
-                      onClick={() => setSelectedOrder(order)}
-                      className="text-blue-600 hover:text-blue-900"
+                    <Link
+                      href={`/${params.locale}/dashboard/orders/${order.id}`}
+                      className="text-blue-600 hover:text-blue-900 inline-flex items-center gap-1"
                     >
-                      <Eye className="h-4 w-4 inline" />
-                    </button>
+                      <Eye className="h-4 w-4" />
+                      <span>View</span>
+                    </Link>
                   </td>
                 </tr>
               ))}
@@ -294,117 +268,6 @@ export default function OrdersPage() {
           </table>
         </div>
       </div>
-
-      {/* Order Detail Modal */}
-      {selectedOrder && (
-        <div className="fixed inset-0 z-50 overflow-y-auto">
-          <div className="flex items-center justify-center min-h-screen px-4">
-            <div className="fixed inset-0 bg-black opacity-50" onClick={() => setSelectedOrder(null)}></div>
-            
-            <div className="relative bg-white rounded-xl shadow-2xl max-w-3xl w-full p-8 max-h-[90vh] overflow-y-auto">
-              <div className="flex justify-between items-start mb-6">
-                <div>
-                  <h2 className="text-2xl font-bold text-gray-900">Order Details</h2>
-                  <p className="text-blue-600 font-semibold mt-1">#{selectedOrder.orderId}</p>
-                </div>
-                <button
-                  onClick={() => setSelectedOrder(null)}
-                  className="text-gray-400 hover:text-gray-600"
-                >
-                  <XCircle className="w-6 h-6" />
-                </button>
-              </div>
-
-              <div className="space-y-6">
-                {/* Customer Info */}
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">Customer Information</h3>
-                  <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-                    <p className="text-sm"><span className="font-medium">Name:</span> {selectedOrder.customerInfo.name}</p>
-                    <p className="text-sm"><span className="font-medium">Email:</span> {selectedOrder.customerInfo.email}</p>
-                    <p className="text-sm"><span className="font-medium">Phone:</span> {selectedOrder.customerInfo.phone}</p>
-                    <p className="text-sm"><span className="font-medium">Address:</span> {selectedOrder.customerInfo.address}, {selectedOrder.customerInfo.city}, {selectedOrder.customerInfo.country}</p>
-                  </div>
-                </div>
-
-                {/* Order Items */}
-                <div>
-                  <h3 className="font-semibold text-gray-900 mb-3">Order Items</h3>
-                  <div className="space-y-3">
-                    {selectedOrder.items.map((item, index) => (
-                      <div key={index} className="flex gap-4 bg-gray-50 rounded-lg p-4">
-                        {item.image && (
-                          <img src={item.image} alt={item.productName} className="w-16 h-16 object-cover rounded" />
-                        )}
-                        <div className="flex-1">
-                          <p className="font-medium text-gray-900">{item.productName}</p>
-                          <p className="text-sm text-gray-600">Quantity: {item.quantity}</p>
-                          {item.selectedAttributes && Object.keys(item.selectedAttributes).length > 0 && (
-                            <p className="text-xs text-gray-500 mt-1">
-                              {Object.entries(item.selectedAttributes).map(([key, value]) => `${key}: ${value}`).join(', ')}
-                            </p>
-                          )}
-                        </div>
-                        <div className="text-right">
-                          <p className="font-semibold text-gray-900">{formatPrice(item.price * item.quantity, selectedOrder.currency)}</p>
-                          <p className="text-xs text-gray-500">{formatPrice(item.price, selectedOrder.currency)} each</p>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Order Summary */}
-                <div className="border-t pt-4">
-                  <div className="flex justify-between text-xl font-bold">
-                    <span>Total</span>
-                    <span className="text-blue-600">{formatPrice(selectedOrder.total, selectedOrder.currency)}</span>
-                  </div>
-                  <div className="flex justify-between text-sm text-gray-600 mt-2">
-                    <span>Payment Method</span>
-                    <span className="uppercase font-medium">{selectedOrder.paymentMethod}</span>
-                  </div>
-                  <div className="flex justify-between text-sm text-gray-600 mt-1">
-                    <span>Payment Status</span>
-                    <span className={`font-medium ${selectedOrder.paymentStatus === 'paid' ? 'text-green-600' : 'text-yellow-600'}`}>
-                      {selectedOrder.paymentStatus.toUpperCase()}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Update Order Status */}
-                <div className="border-t pt-4">
-                  <h3 className="font-semibold text-gray-900 mb-3">Update Order Status</h3>
-                  <div className="flex gap-3">
-                    <select
-                      value={selectedOrder.orderStatus}
-                      onChange={(e) => {
-                        if (confirm(`Update order status to "${e.target.value}"?`)) {
-                          updateOrderStatus(selectedOrder.orderId, e.target.value);
-                        }
-                      }}
-                      disabled={updatingStatus}
-                      className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <option value="pending">Pending</option>
-                      <option value="confirmed">Confirmed</option>
-                      <option value="shipped">Shipped</option>
-                      <option value="delivered">Delivered</option>
-                      <option value="cancelled">Cancelled</option>
-                    </select>
-                    {updatingStatus && (
-                      <div className="flex items-center">
-                        <Loader2 className="w-6 h-6 animate-spin text-blue-600" />
-                      </div>
-                    )}
-                  </div>
-                  <p className="text-xs text-gray-500 mt-2">Select a new status to update this order</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

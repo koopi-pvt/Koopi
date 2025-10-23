@@ -233,15 +233,16 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// GET - Fetch orders (for store owner)
+// GET - Fetch orders (for store owner or buyer)
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const storeId = searchParams.get('storeId');
+    const buyerId = searchParams.get('buyerId');
 
-    if (!storeId) {
+    if (!storeId && !buyerId) {
       return NextResponse.json(
-        { error: 'Store ID is required' },
+        { error: 'Store ID or Buyer ID is required' },
         { status: 400 }
       );
     }
@@ -253,12 +254,25 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    const ordersSnapshot = await adminDb
-      .collection('orders')
-      .where('storeId', '==', storeId)
-      .orderBy('createdAt', 'desc')
-      .limit(100)
-      .get();
+    let ordersSnapshot;
+
+    if (buyerId) {
+      // Fetch orders for buyer
+      ordersSnapshot = await adminDb
+        .collection('orders')
+        .where('buyerId', '==', buyerId)
+        .orderBy('createdAt', 'desc')
+        .limit(100)
+        .get();
+    } else {
+      // Fetch orders for store owner
+      ordersSnapshot = await adminDb
+        .collection('orders')
+        .where('storeId', '==', storeId)
+        .orderBy('createdAt', 'desc')
+        .limit(100)
+        .get();
+    }
 
     const orders = ordersSnapshot.docs.map(doc => ({
       id: doc.id,

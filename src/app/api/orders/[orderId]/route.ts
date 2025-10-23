@@ -1,13 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { adminDb } from '@/lib/firebase-admin';
+import { FieldValue } from 'firebase-admin/firestore';
 
-// GET - Fetch single order by ID
+// GET - Fetch single order details
 export async function GET(
   request: NextRequest,
-  context: { params: Promise<{ orderId: string }> }
+  { params }: { params: { orderId: string } }
 ) {
   try {
-    const { orderId } = await context.params;
+    const { orderId } = params;
 
     if (!adminDb) {
       return NextResponse.json(
@@ -16,33 +17,28 @@ export async function GET(
       );
     }
 
-    // Search by orderId field (not document ID)
-    const ordersSnapshot = await adminDb
-      .collection('orders')
-      .where('orderId', '==', orderId)
-      .limit(1)
-      .get();
+    const orderDoc = await adminDb.collection('orders').doc(orderId).get();
 
-    if (ordersSnapshot.empty) {
+    if (!orderDoc.exists) {
       return NextResponse.json(
         { error: 'Order not found' },
         { status: 404 }
       );
     }
 
-    const orderDoc = ordersSnapshot.docs[0];
+    const orderData = orderDoc.data();
     const order = {
       id: orderDoc.id,
-      ...orderDoc.data(),
-      createdAt: orderDoc.data().createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
-      updatedAt: orderDoc.data().updatedAt?.toDate?.()?.toISOString() || new Date().toISOString(),
+      ...orderData,
+      createdAt: orderData?.createdAt?.toDate?.()?.toISOString() || new Date().toISOString(),
+      updatedAt: orderData?.updatedAt?.toDate?.()?.toISOString() || new Date().toISOString(),
     };
 
     return NextResponse.json({ order });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error fetching order:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch order' },
+      { error: error.message || 'Failed to fetch order' },
       { status: 500 }
     );
   }
@@ -51,12 +47,12 @@ export async function GET(
 // PATCH - Update order status
 export async function PATCH(
   request: NextRequest,
-  context: { params: Promise<{ orderId: string }> }
+  { params }: { params: { orderId: string } }
 ) {
   try {
-    const { orderId } = await context.params;
+    const { orderId } = params;
     const body = await request.json();
-    const { orderStatus, paymentStatus } = body;
+    const { status, trackingNumber, notes } = body;
 
     if (!adminDb) {
       return NextResponse.json(
@@ -65,38 +61,37 @@ export async function PATCH(
       );
     }
 
-    // Find order by orderId
-    const ordersSnapshot = await adminDb
-      .collection('orders')
-      .where('orderId', '==', orderId)
-      .limit(1)
-      .get();
-
-    if (ordersSnapshot.empty) {
+    // Validate status
+    const validStatuses = ['pending', 'processing', 'shipped', 'delivered', 'cancelled'];
+    if (status && !validStatuses.includes(status)) {
       return NextResponse.json(
-        { error: 'Order not found' },
-        { status: 404 }
+        { error: 'Invalid order status' },
+        { status: 400 }
       );
     }
 
-    const orderDoc = ordersSnapshot.docs[0];
+    // Build update data
     const updateData: any = {
-      updatedAt: new Date(),
+      updatedAt: FieldValue.serverTimestamp(),
     };
 
-    if (orderStatus) updateData.orderStatus = orderStatus;
-    if (paymentStatus) updateData.paymentStatus = paymentStatus;
+    if (status) updateData.status = status;
+    if (trackingNumber !== undefined) updateData.trackingNumber = trackingNumber;
+    if (notes !== undefined) updateData.notes = notes;
 
-    await orderDoc.ref.update(updateData);
+    // Update order
+    await adminDb.collection('orders').doc(orderId).update(updateData);
+
+    // TODO: Send email notification to buyer about status change
 
     return NextResponse.json({
       success: true,
       message: 'Order updated successfully',
     });
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error updating order:', error);
     return NextResponse.json(
-      { error: 'Failed to update order' },
+      { error: error.message || 'Failed to update order' },
       { status: 500 }
     );
   }
