@@ -249,41 +249,10 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
   return (
     <div className="w-full max-w-md mx-auto">
-      {/* Progress Steps */}
-      <div className="mb-8">
-        <div className="relative flex items-center justify-between w-full">
-          {/* Connection Lines */}
-          <div className="absolute left-0 right-0 top-5 flex items-center px-5">
-            <div className={`flex-1 h-1 transition-all ${
-              currentStep > 1 ? "bg-blue-600" : "bg-gray-200"
-            }`} />
-            <div className={`flex-1 h-1 transition-all ${
-              currentStep > 2 ? "bg-blue-600" : "bg-gray-200"
-            }`} />
-          </div>
-
-          {/* Steps */}
-          {[1, 2, 3].map((step) => (
-            <div key={step} className="relative flex flex-col items-center z-10">
-              <div className={`flex items-center justify-center w-10 h-10 rounded-full font-semibold transition-all ${
-                currentStep >= step
-                  ? "bg-blue-600 text-white"
-                  : "bg-gray-200 text-gray-500"
-              }`}>
-                {currentStep > step ? <Check className="w-5 h-5" /> : step}
-              </div>
-              <span className="mt-2 text-xs text-gray-600 whitespace-nowrap">
-                {step === 1 ? "Account" : step === 2 ? "Store" : "Business"}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
           <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
-          <p className="text-red-700 text-sm">{error}</p>
+          <p className="text-red-700 text-lg">{error}</p>
         </div>
       )}
 
@@ -291,13 +260,13 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
       {currentStep === 1 && (
         <div className="space-y-4">
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">Create Your Account</h3>
-            <p className="text-sm text-gray-600">Let&apos;s start with your basic information</p>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-1">Create Your Account</h3>
+            <p className="text-lg text-gray-600">Let&apos;s start with your basic information</p>
           </div>
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
               Email Address
             </label>
             <input
@@ -312,7 +281,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
           {/* Full Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
               Full Name
             </label>
             <input
@@ -327,7 +296,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
           {/* Password */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
               Password
             </label>
             <input
@@ -345,8 +314,8 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm font-medium text-gray-700">Password Strength</span>
-                  <span className={`text-xs font-semibold ${
+                  <span className="text-lg font-medium text-gray-700">Password Strength</span>
+                  <span className={`text-base font-semibold ${
                     passwordStrength < 50 ? "text-red-600" : 
                     passwordStrength < 100 ? "text-yellow-600" : 
                     "text-green-600"
@@ -369,7 +338,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                   ) : (
                     <X className="w-4 h-4 text-red-500" />
                   )}
-                  <span className={`text-sm ${passwordChecks.minLength ? "text-green-600" : "text-gray-600"}`}>
+                  <span className={`text-lg ${passwordChecks.minLength ? "text-green-600" : "text-gray-600"}`}>
                     At least 8 characters
                   </span>
                 </div>
@@ -379,7 +348,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                   ) : (
                     <X className="w-4 h-4 text-red-500" />
                   )}
-                  <span className={`text-sm ${passwordChecks.hasNumberOrSymbol ? "text-green-600" : "text-gray-600"}`}>
+                  <span className={`text-lg ${passwordChecks.hasNumberOrSymbol ? "text-green-600" : "text-gray-600"}`}>
                     Contains number or symbol
                   </span>
                 </div>
@@ -389,7 +358,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                   ) : (
                     <X className="w-4 h-4 text-red-500" />
                   )}
-                  <span className={`text-sm ${passwordChecks.hasEmailOrName ? "text-green-600" : "text-gray-600"}`}>
+                  <span className={`text-lg ${passwordChecks.hasEmailOrName ? "text-green-600" : "text-gray-600"}`}>
                     Doesn&apos;t contain email or name
                   </span>
                 </div>
@@ -412,13 +381,13 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
       {currentStep === 2 && (
         <div className="space-y-4">
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">Setup Your Store</h3>
-            <p className="text-sm text-gray-600">Tell us about your online store</p>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-1">Setup Your Store</h3>
+            <p className="text-lg text-gray-600">Tell us about your online store</p>
           </div>
 
           {/* Store Name */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
               Store Name
             </label>
             <input
@@ -433,7 +402,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
           {/* Store Slug */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
               Store URL
             </label>
             <div className="flex items-center gap-2">
@@ -450,19 +419,19 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
               {slugStatus === "unavailable" && <X className="w-5 h-5 text-red-500" />}
             </div>
             {formData.storeSlug && (
-              <p className="mt-1.5 text-sm text-gray-600">
+              <p className="mt-1.5 text-lg text-gray-600">
                 Your store will be: <span className="font-medium text-blue-600">{formData.storeSlug}.{baseDomain}</span>
               </p>
             )}
             {slugError && (
-              <p className="mt-1.5 text-sm text-red-600">{slugError}</p>
+              <p className="mt-1.5 text-lg text-red-600">{slugError}</p>
             )}
           </div>
 
           {/* Store Description */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Store Description <span className="text-gray-500 text-xs">(Optional)</span>
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
+              Store Description <span className="text-gray-500 text-base">(Optional)</span>
             </label>
             <textarea
               value={formData.storeDescription}
@@ -475,8 +444,8 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
           {/* Phone Number */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Phone Number <span className="text-gray-500 text-xs">(Optional)</span>
+            <label className="block text-lg font-medium text-gray-700 mb-1.5">
+              Phone Number <span className="text-gray-500 text-base">(Optional)</span>
             </label>
             <div className="flex gap-2">
               <select
@@ -498,7 +467,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                 placeholder="712345678"
               />
             </div>
-            <p className="mt-1.5 text-xs text-gray-500">We&apos;ll use this to contact you about your store</p>
+            <p className="mt-1.5 text-base text-gray-500">We&apos;ll use this to contact you about your store</p>
           </div>
 
           <div className="flex gap-3">
@@ -525,13 +494,13 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
       {currentStep === 3 && (
         <div className="space-y-4">
           <div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-1">Business Information</h3>
-            <p className="text-sm text-gray-600">Optional - You can skip this and add later</p>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-1">Business Information</h3>
+            <p className="text-lg text-gray-600">Optional - You can skip this and add later</p>
           </div>
 
           {/* Account Type */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-3">
+            <label className="block text-lg font-medium text-gray-700 mb-3">
               Account Type
             </label>
             <div className="grid grid-cols-2 gap-3">
@@ -545,7 +514,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                 }`}
               >
                 <div className="font-semibold text-gray-900">Individual</div>
-                <div className="text-xs text-gray-600 mt-1">Personal store</div>
+                <div className="text-base text-gray-600 mt-1">Personal store</div>
               </button>
               <button
                 type="button"
@@ -557,7 +526,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                 }`}
               >
                 <div className="font-semibold text-gray-900">Business</div>
-                <div className="text-xs text-gray-600 mt-1">Company store</div>
+                <div className="text-base text-gray-600 mt-1">Company store</div>
               </button>
             </div>
           </div>
@@ -567,8 +536,8 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
             <>
               {/* Business Name */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Business Name <span className="text-gray-500 text-xs">(Optional)</span>
+                <label className="block text-lg font-medium text-gray-700 mb-1.5">
+                  Business Name <span className="text-gray-500 text-base">(Optional)</span>
                 </label>
                 <input
                   type="text"
@@ -581,8 +550,8 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
               {/* Business Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Business Type <span className="text-gray-500 text-xs">(Optional)</span>
+                <label className="block text-lg font-medium text-gray-700 mb-1.5">
+                  Business Type <span className="text-gray-500 text-base">(Optional)</span>
                 </label>
                 <select
                   value={formData.businessType}
@@ -600,8 +569,8 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
               {/* Tax ID */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                  Tax ID / EIN <span className="text-gray-500 text-xs">(Optional)</span>
+                <label className="block text-lg font-medium text-gray-700 mb-1.5">
+                  Tax ID / EIN <span className="text-gray-500 text-base">(Optional)</span>
                 </label>
                 <input
                   type="text"
@@ -614,8 +583,8 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
 
               {/* Business Address */}
               <div className="space-y-3">
-                <label className="block text-sm font-medium text-gray-700">
-                  Business Address <span className="text-gray-500 text-xs">(Optional)</span>
+                <label className="block text-lg font-medium text-gray-700">
+                  Business Address <span className="text-gray-500 text-base">(Optional)</span>
                 </label>
                 
                 <input
@@ -672,7 +641,7 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
                 onChange={(e) => setFormData({ ...formData, acceptTerms: e.target.checked })}
                 className="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500"
               />
-              <span className="text-sm text-gray-700">
+              <span className="text-lg text-gray-700">
                 I agree to the{" "}
                 <a href="#" className="text-blue-600 hover:underline">
                   Terms of Service
@@ -721,14 +690,24 @@ export default function MultiStepSignupForm({ locale }: MultiStepSignupFormProps
             <Check className="w-10 h-10 text-green-600" />
           </div>
           <h3 className="text-2xl font-bold text-gray-900 mb-2">Account Created! 🎉</h3>
-          <p className="text-gray-600 mb-4">
+          <p className="text-gray-600 mb-4 text-lg">
             Welcome to Koopi! We&apos;ve sent a verification email to <strong>{formData.email}</strong>
           </p>
-          <p className="text-sm text-gray-500">
+          <p className="text-lg text-gray-500">
             Redirecting you to your dashboard...
           </p>
         </div>
       )}
+
+      {/* Navigation to Login */}
+      <div className="mt-6">
+        <a 
+          href={`/${locale}/login`} 
+          className="w-full py-3 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg transition-all hover:bg-gray-50 flex items-center justify-center gap-2"
+        >
+          {t("haveAccount")} {t("loginLink")}
+        </a>
+      </div>
     </div>
   );
 }

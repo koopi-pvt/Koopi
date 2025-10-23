@@ -115,7 +115,7 @@ export default function LoginForm({ locale }: LoginFormProps) {
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2">
           <AlertCircle className="h-5 w-5 text-red-600 flex-shrink-0 mt-0.5" />
           <div>
-            <p className="text-red-700 text-sm">{error}</p>
+            <p className="text-red-700 text-lg">{error}</p>
           </div>
         </div>
       )}
@@ -123,7 +123,7 @@ export default function LoginForm({ locale }: LoginFormProps) {
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Email Field */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+          <label className="block text-lg font-medium text-gray-700 mb-1.5">
             {t("emailLabel")}
           </label>
           <input
@@ -139,10 +139,10 @@ export default function LoginForm({ locale }: LoginFormProps) {
         {/* Password Field */}
         <div>
           <div className="flex justify-between items-center mb-1.5">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-lg font-medium text-gray-700">
               {t("passwordLabel")}
             </label>
-            <a href={`/${locale}/forgot-password`} className="text-sm text-blue-600 hover:text-blue-700 hover:underline">
+            <a href={`/${locale}/forgot-password`} className="text-lg text-blue-600 hover:text-blue-700 hover:underline">
               {t("forgotPassword")}
             </a>
           </div>
@@ -221,11 +221,13 @@ export default function LoginForm({ locale }: LoginFormProps) {
         </div>
       </div>
 
-      {/* Sign up link */}
-      <div className="mt-6 text-center text-sm text-gray-600">
-        {t("noAccount")}{" "}
-        <Link href={`/${locale}/signup`} className="font-medium text-blue-600 hover:text-blue-700 hover:underline">
-          {t("signupLink")}
+      {/* Sign up button */}
+      <div className="mt-6">
+        <Link 
+          href={`/${locale}/signup`}
+          className="w-full py-3 bg-white border border-gray-300 text-gray-700 font-semibold rounded-lg transition-all hover:bg-gray-50 flex items-center justify-center gap-2"
+        >
+          {t("noAccount")} {t("signupLink")}
         </Link>
       </div>
     </div>
