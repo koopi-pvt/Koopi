@@ -1,0 +1,469 @@
+{
+  "Header": {
+    "features": "Features",
+    "about": "About",
+    "login": "Log in",
+    "startFree": "Start Free",
+    "dashboard": "Dashboard"
+  },
+  "SignupPage": {
+    "title": "Create Your Store",
+    "subtitle": "Join thousands of entrepreneurs building their online stores",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Min. 8 characters",
+    "storeNameLabel": "Store Name",
+    "storeNamePlaceholder": "My Awesome Store",
+    "storeSlugLabel": "Store URL",
+    "storeSlugPlaceholder": "mystore",
+    "storeSlugHelper": "Your store will be available at:",
+    "checking": "Checking...",
+    "available": "Available!",
+    "unavailable": "Already taken",
+    "signupButton": "Create My Store",
+    "signingUp": "Creating your store...",
+    "orContinueWith": "Or continue with",
+    "googleButton": "Sign up with Google",
+    "haveAccount": "Already have an account?",
+    "loginLink": "Log in",
+    "termsAgree": "By signing up, you agree to our",
+    "termsLink": "Terms & Conditions",
+    "errorTitle": "Signup Failed",
+    "errorGeneric": "Something went wrong. Please try again."
+  },
+  "LoginPage": {
+    "title": "Welcome Back",
+    "subtitle": "Log in to manage your store",
+    "emailLabel": "Email Address",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "rememberMe": "Remember me for 14 days",
+    "forgotPassword": "Forgot password?",
+    "loginButton": "Log In",
+    "loggingIn": "Logging in...",
+    "orContinueWith": "Or continue with",
+    "googleButton": "Log in with Google",
+    "noAccount": "Don't have an account?",
+    "signupLink": "Sign up for free",
+    "errorTitle": "Login Failed",
+    "errorGeneric": "Invalid email or password"
+  },
+  "Hero": {
+    "title1": "Build Your Store,",
+    "title2": "Command by Command",
+    "subtitle": "Simple as running a script. Powerful as a full platform. Zero coding required.",
+    "primaryCta": "Start Building Free",
+    "secondaryCta": "See How It Works"
+  },
+  "Features": {
+    "title": "Everything you need to sell online",
+    "subtitle": "Powerful features that help you grow your business and serve your customers better.",
+    "card1": {
+      "title": "Lightning Fast Setup",
+      "description": "Get your online store up and running in minutes with our intuitive setup process."
+    },
+    "card2": {
+      "title": "Mobile Optimized",
+      "description": "Ensure your store looks and functions perfectly on all devices, from smartphones to tablets."
+    },
+    "card3": {
+      "title": "Secure Payments",
+      "description": "Protect your customers' data with our secure payment gateway and fraud prevention tools."
+    },
+    "card4": {
+      "title": "Analytics Dashboard",
+      "description": "Track your sales, customer behavior, and other key metrics with our comprehensive analytics dashboard."
+    },
+    "card5": {
+      "title": "Custom Themes",
+      "description": "Create a unique brand identity with our customizable themes and design options."
+    },
+    "card6": {
+      "title": "24/7 Support",
+      "description": "Our dedicated support team is available around the clock to assist you with any questions or issues."
+    }
+  },
+  "Pricing": {
+    "title": "The perfect plan, free forever.",
+    "subtitle": "We believe in empowering entrepreneurs. That's why our core platform is free, with powerful Pro features on the horizon.",
+    "free": {
+      "title": "Free",
+      "description": "Get started with all the essentials to launch and grow your business.",
+      "price": "LKR 0",
+      "period": "/forever",
+      "features": [
+        "Unlimited Products",
+        "Beautiful Storefront",
+        "Secure Checkout",
+        "Real-time Analytics",
+        "Email Support"
+      ],
+      "cta": "Start for Free"
+    },
+    "pro": {
+      "title": "Pro",
+      "badge": "Coming Soon",
+      "description": "Unlock advanced features to scale your business to the next level.",
+      "price": "Coming Soon",
+      "features": [
+        "Everything in Free, plus...",
+        "Advanced AI Analytics",
+        "Multi-currency Support",
+        "API Access",
+        "Priority Support"
+      ],
+      "cta": "Get Notified"
+    }
+  },
+  "CTA": {
+    "title": "Ready to start selling?",
+    "subtitle": "Join thousands of entrepreneurs who trust Koopi to power their online stores. Start your free trial today.",
+    "primaryCta": "Start for free",
+    "secondaryCta": "Learn more"
+  },
+  "Footer": {
+    "copyright": "© 2025 Koopi. All rights reserved.",
+    "terms": "Terms",
+    "privacy": "Privacy"
+  },
+  "SignUp": {
+    "title": "Create your account",
+    "subtitle": "Join our community and start your journey with us.",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "submitButton": "Create Account",
+    "orContinueWith": "Or continue with",
+    "googleButton": "Google",
+    "confirmPasswordLabel": "Confirm Password",
+    "termsAndConditions": "Terms and Conditions",
+    "storeNameLabel": "Store Name",
+    "storeSlugLabel": "Store Slug",
+    "accountTypeLabel": "Account Type",
+    "individual": "Individual",
+    "business": "Business",
+    "businessInfoHeading": "Business Information",
+    "businessNameLabel": "Business Name",
+    "businessTypeLabel": "Business Type",
+    "selectType": "Select type",
+    "llc": "LLC",
+    "soleProprietor": "Sole Proprietor",
+    "corporation": "Corporation",
+    "partnership": "Partnership",
+    "taxIdLabel": "Tax ID/EIN",
+    "phoneNumberLabel": "Phone Number",
+    "ownerNameLabel": "Owner/Contact Person",
+    "businessAddressLabel": "Business Address",
+    "storeConfigHeading": "Store Configuration",
+    "storeDescriptionLabel": "Store Description",
+    "categoriesLabel": "Categories (comma-separated)",
+    "shippingLocationsLabel": "Shipping Locations (comma-separated)",
+    "returnPolicyLabel": "Return Policy",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "creatingAccount": "Creating Account...",
+    "agreeTo": "I agree to the"
+  },
+  "Login": {
+    "title": "Welcome back",
+    "subtitle": "Enter your details to access your account.",
+    "emailLabel": "Email Address",
+    "passwordLabel": "Password",
+    "submitButton": "Log in",
+    "orContinueWith": "Or continue with",
+    "googleButton": "Google",
+    "rememberMe": "Remember me",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "signupLink": "Create one"
+  },
+  "Terms": {
+    "title": "Terms and Conditions",
+    "lastUpdated": "Last Updated",
+    "section1": {
+      "title": "Acceptance of Terms",
+      "content": "By accessing and using Koopi's platform, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you should not use our service. These terms apply to all visitors, users, and others who access or use the service."
+    },
+    "section2": {
+      "title": "Use of Service",
+      "content": "You agree to use Koopi only for lawful purposes and in accordance with these Terms. You are prohibited from:",
+      "list1": "Violating any applicable laws or regulations",
+      "list2": "Impersonating any person or entity, or falsely stating your affiliation",
+      "list3": "Attempting to interfere with the proper functioning of the service",
+      "list4": "Engaging in any activity that could harm other users or the platform"
+    },
+    "section3": {
+      "title": "User Accounts",
+      "content": "When you create an account with us, you must provide accurate, complete, and current information. You are responsible for maintaining the confidentiality of your account credentials and for all activities under your account. You must notify us immediately of any unauthorized use of your account."
+    },
+    "section4": {
+      "title": "Intellectual Property",
+      "content": "The service and its original content, features, and functionality are owned by Koopi and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws. You may not copy, modify, distribute, or create derivative works based on our content without explicit permission."
+    },
+    "section5": {
+      "title": "Payment and Billing",
+      "content": "Certain features of the service may be provided for a fee. You agree to provide current, complete, and accurate purchase and account information. You agree to promptly update your account and payment information to keep it current. All fees are non-refundable except as required by law."
+    },
+    "section6": {
+      "title": "Limitation of Liability",
+      "content": "In no event shall Koopi, its directors, employees, or partners be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the service. This includes but is not limited to damages for loss of profits, data, or other intangible losses."
+    },
+    "section7": {
+      "title": "Privacy Policy",
+      "content": "Your use of the service is also governed by our Privacy Policy. We collect, use, and protect your personal information in accordance with applicable data protection laws. By using our service, you consent to such processing and warrant that all data provided by you is accurate."
+    },
+    "section8": {
+      "title": "Termination",
+      "content": "We may terminate or suspend your account and access to the service immediately, without prior notice or liability, for any reason, including if you breach these Terms. Upon termination, your right to use the service will immediately cease. All provisions which by their nature should survive termination shall survive."
+    },
+    "section9": {
+      "title": "Changes to Terms",
+      "content": "We reserve the right to modify or replace these Terms at any time. If a revision is material, we will provide at least 30 days' notice before any new terms take effect. By continuing to access or use our service after revisions become effective, you agree to be bound by the revised terms."
+    },
+    "section10": {
+      "title": "Contact Information",
+      "content": "If you have any questions about these Terms and Conditions, please contact us using the information below. We aim to respond to all inquiries within 48 hours during business days."
+    }
+  },
+  "Dashboard": {
+    "welcome": "Welcome to your dashboard",
+    "overview": {
+      "welcome": "Dashboard Overview",
+      "subtitle": "Manage your store - {storeName}"
+    },
+    "sidebar": {
+      "overview": "Overview",
+      "products": "Products",
+      "orders": "Orders",
+      "customers": "Customers",
+      "analytics": "Analytics",
+      "settings": "Settings",
+      "profile": "Profile",
+      "daysLeft": "days left",
+      "trial": "Trial",
+      "free": "Free",
+      "pro": "Pro",
+      "freePlan": "Free Plan",
+      "proPlan": "Pro Plan",
+      "allRights": "All rights reserved"
+    },
+    "header": {
+      "welcome": "Dashboard",
+      "profile": "Profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
+    "trial": {
+      "title": "{days} days left in your trial",
+      "description": "Upgrade to continue using all features after your trial ends",
+      "upgrade": "Upgrade Now"
+    },
+    "stats": {
+      "orders": "Total Orders",
+      "products": "Total Products",
+      "revenue": "Total Revenue",
+      "customers": "Total Customers",
+      "noOrdersYet": "No orders yet",
+      "addFirstProduct": "Add your first product",
+      "startSelling": "Start selling today",
+      "noCustomersYet": "No customers yet"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "addProduct": "Add Product",
+      "addProductDesc": "List your first item for sale",
+      "customize": "Customize Store",
+      "customizeDesc": "Change theme and branding",
+      "settings": "Settings",
+      "settingsDesc": "Configure your store settings"
+    },
+    "recentOrders": {
+      "title": "Recent Orders",
+      "viewAll": "View all",
+      "empty": "No orders yet",
+      "emptyDesc": "Your recent orders will appear here once customers start placing orders",
+      "addProduct": "Add Your First Product"
+    },
+    "products": {
+      "title": "Products",
+      "subtitle": "Manage your product inventory",
+      "emptyTitle": "No products yet",
+      "emptyDesc": "Start by adding your first product to your store. You can add images, descriptions, pricing, and more.",
+      "addProduct": "Add Product",
+      "searchPlaceholder": "Search products...",
+      "allStatus": "All Status",
+      "active": "Active",
+      "draft": "Draft",
+      "allTypes": "All Types",
+      "physical": "Physical",
+      "digital": "Digital",
+      "service": "Service",
+      "search": "Search",
+      "productColumn": "Product",
+      "statusColumn": "Status",
+      "inventoryColumn": "Inventory",
+      "typeColumn": "Type",
+      "priceColumn": "Price",
+      "vendorColumn": "Vendor",
+      "actionsColumn": "Actions",
+      "inStock": "in stock",
+      "lowStock": "Low",
+      "notTracked": "Not tracked",
+      "noProductsFound": "No products found matching your filters.",
+      "deleteConfirm": "Are you sure you want to delete this product?",
+      "deleteSuccess": "Product deleted successfully",
+      "deleteFailed": "Failed to delete product",
+      "add": {
+        "title": "Add New Product",
+        "subtitle": "Create a new product for your store",
+        "backToProducts": "Back to Products",
+        "step1Title": "Step 1: Basic Information",
+        "step1Desc": "Enter the basic details about your product",
+        "step2Title": "Step 2: Media & Inventory",
+        "step2Desc": "Add images, variants, and manage inventory",
+        "step3Title": "Step 3: Pricing & Related Products",
+        "step3Desc": "Set pricing and select related products",
+        "nameLabel": "Product Name",
+        "namePlaceholder": "Enter product name",
+        "descriptionLabel": "Description",
+        "descriptionPlaceholder": "Describe your product",
+        "categoryLabel": "Category",
+        "categoryPlaceholder": "e.g., Electronics, Clothing",
+        "vendorLabel": "Vendor",
+        "vendorPlaceholder": "Brand or manufacturer",
+        "tagsLabel": "Tags",
+        "tagsPlaceholder": "Add a tag",
+        "addTag": "Add",
+        "typeLabel": "Product Type",
+        "statusLabel": "Status",
+        "imagesLabel": "Product Images",
+        "uploadImages": "Click to upload images",
+        "uploadingImages": "Uploading...",
+        "imageHint": "PNG, JPG, GIF up to 10MB",
+        "variantsLabel": "Product Variants (e.g., Size, Color)",
+        "variantNamePlaceholder": "Variant name (e.g., Size)",
+        "variantOptionsPlaceholder": "Options (comma-separated)",
+        "addVariant": "Add Variant",
+        "trackInventory": "Track inventory for this product",
+        "quantityLabel": "Quantity in Stock",
+        "lowStockLabel": "Low Stock Threshold",
+        "priceLabel": "Price",
+        "compareAtPriceLabel": "Compare at Price",
+        "compareAtPriceHint": "Show a discount by setting a higher compare-at price",
+        "chargeTax": "Charge tax on this product",
+        "relatedProductsLabel": "Related Products",
+        "relatedProductsDesc": "Select products to show as recommendations",
+        "noRelatedProducts": "No other products available",
+        "previous": "Previous",
+        "next": "Next",
+        "createProduct": "Create Product",
+        "creating": "Creating...",
+        "requiredFields": "Please fill in all required fields",
+        "priceError": "Price must be greater than 0",
+        "createSuccess": "Product created successfully!",
+        "createFailed": "Failed to create product",
+        "uploadFailed": "Failed to upload",
+        "variantCombinationsNote": "Stock is managed per variant combination above.",
+        "totalStockAcrossVariants": "Total stock across all variants:",
+        "units": "units",
+        "dragDropHint": "Drag images to reorder. First image is the primary image.",
+        "generateCombinations": "Generate Variant Combinations",
+        "manageVariantCombinations": "Manage Variant Combinations",
+        "showCustomPricing": "Show custom pricing",
+        "bulkSetStock": "Bulk set stock:",
+        "enterQuantity": "Enter quantity",
+        "pressEnterToApply": "Press Enter to apply to all combinations",
+        "variant": "Variant",
+        "sku": "SKU",
+        "priceColumn": "Price",
+        "stock": "Stock",
+        "lowStockAlert": "Low Stock Alert",
+        "totalStockSummary": "Total Stock Across All Variants:",
+        "defineVariants": "Define Variants",
+        "variantsLabel": "Product Variants",
+        "variantsDefined": "variant(s) defined",
+        "combinations": "combination(s)",
+        "variantNameLabel": "Variant Name",
+        "variantNamePlaceholder": "e.g., Size, Color, Material",
+        "optionsLabel": "Options",
+        "optionPlaceholder": "e.g., Small, Red, Cotton",
+        "addOption": "Add Option",
+        "addNewVariant": "Add New Variant"
+      },
+      "edit": {
+        "title": "Edit Product",
+        "subtitle": "Update product information",
+        "updateProduct": "Update Product",
+        "updating": "Updating...",
+        "updateSuccess": "Product updated successfully!",
+        "updateFailed": "Failed to update product",
+        "fetchFailed": "Failed to fetch product"
+      }
+    },
+    "orders": {
+      "title": "Orders",
+      "subtitle": "View and manage customer orders",
+      "emptyTitle": "No orders yet",
+      "emptyDesc": "Customer orders will appear here. Make sure you have products listed in your store."
+    },
+    "customers": {
+      "title": "Customers",
+      "subtitle": "View and manage your customer base",
+      "emptyTitle": "No customers yet",
+      "emptyDesc": "Your customers will appear here once they create accounts or place orders."
+    },
+    "analytics": {
+      "title": "Analytics",
+      "subtitle": "Track your store performance and insights",
+      "emptyTitle": "Coming Soon",
+      "emptyDesc": "Analytics and reporting features are currently under development. Stay tuned!"
+    },
+    "settings": {
+      "title": "Settings",
+      "subtitle": "Configure your store settings",
+      "emptyTitle": "Store Settings",
+      "emptyDesc": "Settings panel is under development. You'll be able to configure payments, shipping, and more."
+    },
+    "profile": {
+      "title": "Profile",
+      "subtitle": "Manage your account information",
+      "displayName": "Display Name",
+      "email": "Email Address",
+      "emailNote": "Email cannot be changed",
+      "phone": "Phone Number",
+      "changePhoto": "Change Photo",
+      "edit": "Edit Profile",
+      "save": "Save Changes",
+      "cancel": "Cancel",
+      "changePassword": "Change Password",
+      "changePasswordDesc": "Update your password to keep your account secure",
+      "changePasswordBtn": "Change Password"
+    }
+  },
+  "AuthLayout": {
+    "title": "Join thousands of successful entrepreneurs",
+    "subtitle": "Discover why Koopi is the preferred platform for growing businesses.",
+    "testimonials": [
+      {
+        "quote": "Koopi transformed my business. The setup was incredibly fast, and I saw a 200% increase in sales within the first month!",
+        "name": "John Doe",
+        "role": "Founder of TechGadgets"
+      },
+      {
+        "quote": "The AI Marketing Studio is a game-changer. I can create professional social media posts in minutes without a designer.",
+        "name": "Jane Smith",
+        "role": "Owner of FashionForward"
+      },
+      {
+        "quote": "As a small business owner, Koopi's affordability and powerful features are unmatched. The support team is always there to help.",
+        "name": "David Lee",
+        "role": "Creator of ArtisanCrafts"
+      }
+    ]
+  },
+  "AuthHeader": {
+    "title": "Create your account",
+    "subtitle": "By signing up, you agree to our",
+    "terms": "Terms & Conditions"
+  }
+}

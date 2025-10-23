@@ -1,0 +1,368 @@
+{
+  "Header": {
+    "features": "විශේෂාංග",
+    "about": "අපි ගැන",
+    "login": "පිවිසෙන්න",
+    "startFree": "නොමිලේ අරඹමු",
+    "dashboard": "Dashboard"
+  },
+  "SignupPage": {
+    "title": "ඔබේ Store එක හදාගන්න",
+    "subtitle": "තමන්ගේම online store හදන දහස් ගණනක් ව්‍යවසායකයින් හා එක්වන්න",
+    "emailLabel": "ඊමේල් ලිපිනය",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "මුරපදය",
+    "passwordPlaceholder": "අවම අකුරු 8ක්",
+    "storeNameLabel": "Store එකේ නම",
+    "storeNamePlaceholder": "මගේ නියම Store එක",
+    "storeSlugLabel": "Store URL එක",
+    "storeSlugPlaceholder": "my-store",
+    "storeSlugHelper": "ඔබේ store එකට පිවිසිය හැකි ලිපිනය:",
+    "checking": "පරීක්ෂා කරමින්...",
+    "available": "භාවිතා කළ හැකියි!",
+    "unavailable": "දැනටමත් භාවිතයේ ඇත",
+    "signupButton": "මගේ Store එක සාදන්න",
+    "signingUp": "ඔබේ store එක සාදමින්...",
+    "orContinueWith": "හෝ මේවායින් පිවිසෙන්න",
+    "googleButton": "Google හරහා ලියාපදිංචි වන්න",
+    "haveAccount": "දැනටමත් ගිණුමක් තිබේද?",
+    "loginLink": "පිවිසෙන්න",
+    "termsAgree": "ලියාපදිංචි වීමෙන්, ඔබ අපගේ",
+    "termsLink": "සේවා කොන්දේසි වලට"
+  },
+  "LoginPage": {
+    "title": "නැවතත් සාදරයෙන් පිළිගනිමු!",
+    "subtitle": "ඔබේ store එක කළමනාකරණය කිරීමට පිවිසෙන්න",
+    "emailLabel": "ඊමේල් ලිපිනය",
+    "emailPlaceholder": "you@example.com",
+    "passwordLabel": "මුරපදය",
+    "passwordPlaceholder": "ඔබේ මුරපදය ඇතුළත් කරන්න",
+    "rememberMe": "දින 14ක් මාව මතක තබාගන්න",
+    "forgotPassword": "මුරපදය අමතකද?",
+    "loginButton": "පිවිසෙන්න",
+    "loggingIn": "පිවිසෙමින්...",
+    "orContinueWith": "හෝ මේවායින් පිවිසෙන්න",
+    "googleButton": "Google හරහා පිවිසෙන්න",
+    "noAccount": "ගිණුමක් නැද්ද?",
+    "signupLink": "නොමිලේ සාදාගන්න"
+  },
+  "Hero": {
+    "title1": "ඔබේ Business එකට,",
+    "title2": "නව ජවයක්",
+    "subtitle": "ලංකාවේ නව පරපුරේ ව්‍යවසායකයින් වෙනුවෙන්ම නිර්මාණය වූ AI බල ගැන්වූ e-commerce මෙහෙයුම් පද්ධතිය.",
+    "primaryCta": "දින 14ක් නොමිලේ අත්හදා බලන්න",
+    "secondaryCta": "ක්‍රියා කරන ආකාරය බලන්න"
+  },
+  "Features": {
+    "title": "Online විකුණන්න අවශ්‍ය හැමදේම",
+    "subtitle": "ඔබේ ව්‍යාපාරය දියුණු කරගන්න සහ පාරිභෝගිකයින්ට හොඳම සේවාව දෙන්න උදව් වෙන බලවත් විශේෂාංග.",
+    "card1": {
+      "title": "විනාඩි 10න් Store එකක්",
+      "description": "අපේ සරල පියවරයන් අනුගමනය කරලා, විනාඩි කිහිපයකින් ඔබේම online store එකක් හදාගන්න."
+    },
+    "card2": {
+      "title": "ඕනෑම තිරයකට ගැලපෙන පෙනුමක්",
+      "description": "ඔබේ store එක phone, tablet, computer... මේ ඕනම screen එකක ලස්සනට පේන බවට අපි වගබලා ගන්නවා."
+    },
+    "card3": {
+      "title": "සුරක්ෂිත ගෙවීම්",
+      "description": "අපේ ආරක්ෂිත ගෙවීම් පද්ධතියෙන් ඔබේ පාරිභෝගිකයින්ගේ දත්ත සුරක්ෂිත කරන්න."
+    },
+    "card4": {
+      "title": "Business Reports සහ Insights",
+      "description": "විකුණුම් වාර්තා, පාරිභෝගික හැසිරීම්, සහ අනෙකුත් ප්‍රධාන දත්ත බලාගෙන හොඳම තීරණ ගන්න."
+    },
+    "card5": {
+      "title": "ඔබේම Brand එකක්",
+      "description": "අපේ professional themes හතරෙන් කැමති එකක් තෝරලා, ඔබේ brand එකටම හරියන විදියට හදාගන්න."
+    },
+    "card6": {
+      "title": "අපි ඉන්නවා උදව්වට 24/7",
+      "description": "ඔබට ඕනෑම ප්‍රශ්නයක් ආවොත්, අපේ support team එක ඔයාට උදව් කරන්න හැමවෙලේම ලෑස්තියි."
+    }
+  },
+  "Pricing": {
+    "title": "නියම Plan එක, හැමදාටම නොමිලේ.",
+    "subtitle": "අපි විශ්වාස කරන්නේ ව්‍යවසායකයින් බලගැන්වීමයි. අපේ මූලික platform එක නොමිලේ දෙන්නේ ඒ නිසයි.",
+    "free": {
+      "title": "නොමිලේ",
+      "description": "ඔබේ ව්‍යාපාරය පටන් අරන්, දියුණු කරගන්න අවශ්‍ය හැමදේම.",
+      "price": "රු. 0",
+      "period": "/හැමදාටම",
+      "features": [
+        "නිෂ්පාදන සීමාවක් නැහැ",
+        "ලස්සන Store එකක්",
+        "සුරක්ෂිත Checkout",
+        "Real-time Reports",
+        "ඊමේල් සහාය"
+      ],
+      "cta": "නොමිලේ අරඹන්න"
+    },
+    "pro": {
+      "title": "Pro",
+      "badge": "ළඟදීම...",
+      "description": "ඔබේ ව්‍යාපාරය ඊළඟ level එකට ගෙනියන්න, advanced features අත්විඳින්න.",
+      "price": "ළඟදීම...",
+      "features": [
+        "නොමිලේ දෙන හැමදේම, තව...",
+        "Advanced AI Analytics",
+        "විවිධ මුදල් ඒකක සඳහා සහාය",
+        "API ප්‍රවේශය",
+        "විශේෂ සහාය සේවාව"
+      ],
+      "cta": "දැනුවත් වන්න"
+    }
+  },
+  "CTA": {
+    "title": "විකුණන්න පටන් ගන්න ලෑස්තිද?",
+    "subtitle": "කූපි විශ්වාස කරන දහස් ගණනක් ව්‍යවසායකයින් සමග අදම එක්වන්න. ඔබේ ගමන නොමිලේ අරඹන්න.",
+    "primaryCta": "නොමිලේ අරඹන්න",
+    "secondaryCta": "තව දැනගන්න"
+  },
+  "Footer": {
+    "copyright": "© 2025 කූපි. සියලුම හිමිකම් ඇවිරිණි.",
+    "terms": "කොන්දේසි",
+    "privacy": "පෞද්ගලිකත්වය"
+  },
+  "Dashboard": {
+    "welcome": "ඔබේ Dashboard එකට සාදරයෙන් පිළිගනිමු",
+    "overview": {
+      "welcome": "Dashboard Overview",
+      "subtitle": "ඔබේ store එක කළමනාකරණය කරන්න - {storeName}"
+    },
+    "sidebar": {
+      "overview": "සමස්තය",
+      "products": "නිෂ්පාදන",
+      "orders": "ඇණවුම්",
+      "customers": "පාරිභෝගිකයින්",
+      "analytics": "වාර්තා",
+      "settings": "සැකසුම්",
+      "profile": "මගේ ගිණුම",
+      "daysLeft": "දින ඉතිරියි",
+      "trial": "Trial",
+      "free": "නොමිලේ",
+      "pro": "Pro",
+      "freePlan": "Free Plan",
+      "proPlan": "Pro Plan",
+      "allRights": "සියලුම හිමිකම් ඇවිරිණි"
+    },
+    "header": {
+      "welcome": "Dashboard",
+      "profile": "මගේ ගිණුම",
+      "settings": "සැකසුම්",
+      "logout": "ඉවත් වන්න"
+    },
+    "trial": {
+      "title": "ඔබේ trial කාලය අවසන් වීමට දින {days} ක් ඉතිරියි",
+      "description": "Trial කාලය අවසන් වූ පසු සියලුම විශේෂාංග දිගටම භාවිතා කිරීමට upgrade කරන්න",
+      "upgrade": "දැන්ම Upgrade කරන්න"
+    },
+    "stats": {
+      "orders": "මුළු ඇණවුම්",
+      "products": "මුළු නිෂ්පාදන",
+      "revenue": "මුළු ආදායම",
+      "customers": "මුළු පාරිභෝගිකයින්",
+      "noOrdersYet": "තවම ඇණවුම් නොමැත",
+      "addFirstProduct": "ඔබේ පළමු නිෂ්පාදනය ඇතුළත් කරන්න",
+      "startSelling": "අදම විකිණීම අරඹන්න",
+      "noCustomersYet": "තවම පාරිභෝගිකයින් නොමැත"
+    },
+    "quickActions": {
+      "title": "Quick Actions",
+      "addProduct": "නිෂ්පාදනයක් එක් කරන්න",
+      "addProductDesc": "ඔබේ පළමු භාණ්ඩය විකිණීමට තබන්න",
+      "customize": "Store එක සකසන්න",
+      "customizeDesc": "Theme සහ branding වෙනස් කරන්න",
+      "settings": "සැකසුම්",
+      "settingsDesc": "ඔබේ store එකේ සැකසුම් සකසන්න"
+    },
+    "recentOrders": {
+      "title": "නවතම ඇණවුම්",
+      "viewAll": "සියල්ල බලන්න",
+      "empty": "තවම ඇණවුම් නොමැත",
+      "emptyDesc": "පාරිභෝගිකයින් ඇණවුම් කළ පසු ඔබේ නවතම ඇණවුම් මෙතැන දිස්වනු ඇත",
+      "addProduct": "ඔබේ පළමු නිෂ්පාදනය එක් කරන්න"
+    },
+    "products": {
+      "title": "නිෂ්පාදන",
+      "subtitle": "ඔබේ නිෂ්පාදන සහ තොග කළමනාකරණය කරන්න",
+      "emptyTitle": "තවම නිෂ්පාදන නොමැත",
+      "emptyDesc": "ඔබේ store එකට පළමු නිෂ්පාදනය එකතු කිරීමෙන් ආරම්භ කරන්න. ඔබට පින්තූර, විස්තර, මිල ගණන් සහ තවත් දේ එක් කළ හැකිය.",
+      "addProduct": "නිෂ්පාදනයක් එක් කරන්න",
+      "searchPlaceholder": "නිෂ්පාදන සොයන්න...",
+      "allStatus": "සියලු තත්වයන්",
+      "active": "ක්‍රියාත්මක",
+      "draft": "කෙටුම්පත",
+      "allTypes": "සියලු වර්ග",
+      "physical": "භෞතික",
+      "digital": "ඩිජිටල්",
+      "service": "සේවාව",
+      "search": "සොයන්න",
+      "productColumn": "නිෂ්පාදනය",
+      "statusColumn": "තත්වය",
+      "inventoryColumn": "තොග",
+      "typeColumn": "වර්ගය",
+      "priceColumn": "මිල",
+      "vendorColumn": "බ්‍රෑන්ඩ්",
+      "actionsColumn": "ක්‍රියා",
+      "inStock": "තොගයේ",
+      "lowStock": "අඩු",
+      "notTracked": "නිරීක්ෂණය නොකෙරේ",
+      "noProductsFound": "ඔබේ පෙරහන් වලට ගැලපෙන නිෂ්පාදන හමු නොවීය.",
+      "deleteConfirm": "ඔබට මෙම නිෂ්පාදනය මැකීමට අවශ්‍ය බව විශ්වාසද?",
+      "deleteSuccess": "නිෂ්පාදනය සාර්ථකව මකා දමන ලදී",
+      "deleteFailed": "නිෂ්පාදනය මැකීම අසාර්ථක විය",
+      "add": {
+        "title": "නව නිෂ්පාදනයක් එකතු කරන්න",
+        "subtitle": "ඔබේ store එක සඳහා නව නිෂ්පාදනයක් සාදන්න",
+        "backToProducts": "නිෂ්පාදන වෙත ආපසු",
+        "step1Title": "පියවර 1: මූලික තොරතුරු",
+        "step1Desc": "නිෂ්පාදනය පිළිබඳ මූලික විස්තර ඇතුළත් කරන්න",
+        "step2Title": "පියවර 2: පින්තූර සහ තොග",
+        "step2Desc": "පින්තූර, විකල්ප සහ තොග කළමනාකරණය කරන්න",
+        "step3Title": "පියවර 3: මිල ගණන් සහ සම්බන්ධ නිෂ්පාදන",
+        "step3Desc": "මිල ගණන් සකසන්න සහ සම්බන්ධ නිෂ්පාදන තෝරන්න",
+        "nameLabel": "නිෂ්පාදන නාමය",
+        "namePlaceholder": "නිෂ්පාදන නාමය ඇතුළත් කරන්න",
+        "descriptionLabel": "විස්තරය",
+        "descriptionPlaceholder": "ඔබේ නිෂ්පාදනය විස්තර කරන්න",
+        "categoryLabel": "කාණ්ඩය",
+        "categoryPlaceholder": "උදා: ඉලෙක්ට්‍රොනික, ඇඳුම්",
+        "vendorLabel": "බ්‍රෑන්ඩ්",
+        "vendorPlaceholder": "නිෂ්පාදකයා හෝ බ්‍රෑන්ඩ්",
+        "tagsLabel": "ටැග්",
+        "tagsPlaceholder": "ටැග් එකක් එක් කරන්න",
+        "addTag": "එකතු කරන්න",
+        "typeLabel": "නිෂ්පාදන වර්ගය",
+        "statusLabel": "තත්වය",
+        "imagesLabel": "නිෂ්පාදන පින්තූර",
+        "uploadImages": "පින්තූර උඩුගත කිරීමට ක්ලික් කරන්න",
+        "uploadingImages": "උඩුගත කරමින්...",
+        "imageHint": "PNG, JPG, GIF 10MB දක්වා",
+        "variantsLabel": "නිෂ්පාදන විකල්ප (උදා: ප්‍රමාණය, වර්ණය)",
+        "variantNamePlaceholder": "විකල්ප නාමය (උදා: ප්‍රමාණය)",
+        "variantOptionsPlaceholder": "විකල්ප (කොමාවකින් වෙන් කරන්න)",
+        "addVariant": "විකල්පය එකතු කරන්න",
+        "trackInventory": "මෙම නිෂ්පාදනය සඳහා තොග නිරීක්ෂණය කරන්න",
+        "quantityLabel": "තොගයේ ප්‍රමාණය",
+        "lowStockLabel": "අඩු තොග සීමාව",
+        "priceLabel": "මිල",
+        "compareAtPriceLabel": "සංසන්දනාත්මක මිල",
+        "compareAtPriceHint": "වට්ටමක් පෙන්වීමට ඉහළ සංසන්දනාත්මක මිලක් සකසන්න",
+        "chargeTax": "මෙම නිෂ්පාදනය සඳහා බදු අය කරන්න",
+        "relatedProductsLabel": "සම්බන්ධ නිෂ්පාදන",
+        "relatedProductsDesc": "නිර්දේශයන් ලෙස පෙන්වීමට නිෂ්පාදන තෝරන්න",
+        "noRelatedProducts": "වෙනත් නිෂ්පාදන නොමැත",
+        "previous": "පෙර",
+        "next": "ඊළඟ",
+        "createProduct": "නිෂ්පාදනය සාදන්න",
+        "creating": "සාදමින්...",
+        "requiredFields": "කරුණාකර සියලුම අවශ්‍ය ක්ෂේත්‍ර පුරවන්න",
+        "priceError": "මිල 0 ට වඩා වැඩි විය යුතුය",
+        "createSuccess": "නිෂ්පාදනය සාර්ථකව සාදන ලදී!",
+        "createFailed": "නිෂ්පාදනය සෑදීම අසාර්ථක විය",
+        "uploadFailed": "උඩුගත කිරීම අසාර්ථක විය",
+        "variantCombinationsNote": "තොග කළමනාකරණය ඉහත විකල්ප සංයෝජන අනුව සිදු වේ.",
+        "totalStockAcrossVariants": "සියලුම විකල්ප හරහා මුළු තොගය:",
+        "units": "ඒකක",
+        "dragDropHint": "පින්තූර නැවත පිළිවෙළට සකස් කිරීමට ඇදගෙන යන්න. පළමු පින්තූරය ප්‍රධාන පින්තූරයයි.",
+        "generateCombinations": "විකල්ප සංයෝජන ජනනය කරන්න",
+        "manageVariantCombinations": "විකල්ප සංයෝජන කළමනාකරණය කරන්න",
+        "showCustomPricing": "අභිරුචි මිල ගණන් පෙන්වන්න",
+        "bulkSetStock": "තොග තොග වශයෙන් සකසන්න:",
+        "enterQuantity": "ප්‍රමාණය ඇතුළත් කරන්න",
+        "pressEnterToApply": "සියලුම සංයෝජන සඳහා යෙදීමට Enter ඔබන්න",
+        "variant": "විකල්පය",
+        "sku": "SKU",
+        "priceColumn": "මිල",
+        "stock": "තොගය",
+        "lowStockAlert": "අඩු තොග අනතුරු ඇඟවීම",
+        "totalStockSummary": "සියලුම විකල්ප හරහා මුළු තොගය:",
+        "defineVariants": "විකල්ප නිර්වචනය කරන්න",
+        "variantsLabel": "නිෂ්පාදන විකල්ප",
+        "variantsDefined": "විකල්ප නිර්වචනය කර ඇත",
+        "combinations": "සංයෝජන",
+        "variantNameLabel": "විකල්ප නාමය",
+        "variantNamePlaceholder": "උදා: ප්‍රමාණය, වර්ණය, ද්‍රව්‍යය",
+        "optionsLabel": "විකල්ප",
+        "optionPlaceholder": "උදා: කුඩා, රතු, කපු",
+        "addOption": "විකල්පය එකතු කරන්න",
+        "addNewVariant": "නව විකල්පයක් එකතු කරන්න"
+      },
+      "edit": {
+        "title": "නිෂ්පාදනය සංස්කරණය කරන්න",
+        "subtitle": "නිෂ්පාදන තොරතුරු යාවත්කාලීන කරන්න",
+        "updateProduct": "නිෂ්පාදනය යාවත්කාලීන කරන්න",
+        "updating": "යාවත්කාලීන කරමින්...",
+        "updateSuccess": "නිෂ්පාදනය සාර්ථකව යාවත්කාලීන කරන ලදී!",
+        "updateFailed": "නිෂ්පාදනය යාවත්කාලීන කිරීම අසාර්ථක විය",
+        "fetchFailed": "නිෂ්පාදනය ලබා ගැනීම අසාර්ථක විය"
+      }
+    },
+    "orders": {
+      "title": "ඇණවුම්",
+      "subtitle": "පාරිභෝගික ඇණවුම් බලන්න සහ කළමනාකරණය කරන්න",
+      "emptyTitle": "තවම ඇණවුම් නොමැත",
+      "emptyDesc": "පාරිභෝගික ඇණවුම් මෙහි දිස්වනු ඇත. ඔබේ store එකේ විකිණීමට නිෂ්පාදන ඇති බවට වග බලා ගන්න."
+    },
+    "customers": {
+      "title": "පාරිභෝගිකයින්",
+      "subtitle": "ඔබේ පාරිභෝගිකයින්ගේ විස්තර බලන්න සහ කළමනාකරණය කරන්න",
+      "emptyTitle": "තවම පාරිභෝගිකයින් නොමැත",
+      "emptyDesc": "ගිණුම් සෑදූ හෝ ඇණවුම් කළ පසු ඔබේ පාරිභෝගිකයින් මෙහි දිස්වනු ඇත."
+    },
+    "analytics": {
+      "title": "වාර්තා සහ Insights",
+      "subtitle": "ඔබේ store එකේ ක්‍රියාකාරීත්වය සහ වර්ධනය නිරීක්ෂණය කරන්න",
+      "emptyTitle": "ළඟදීම...",
+      "emptyDesc": "වාර්තා සහ insights විශේෂාංග දැනට නිර්මාණය වෙමින් පවතී. බලාපොරොත්තු වන්න!"
+    },
+    "settings": {
+      "title": "සැකසුම්",
+      "subtitle": "ඔබේ store එකේ සැකසුම් සකසන්න",
+      "emptyTitle": "Store සැකසුම්",
+      "emptyDesc": "සැකසුම් පුවරුව නිර්මාණය වෙමින් පවතී. ඔබට ගෙවීම්, බෙදාහැරීම් සහ තවත් දේ සකස් කිරීමට හැකි වනු ඇත."
+    },
+    "profile": {
+      "title": "මගේ ගිණුම",
+      "subtitle": "ඔබේ ගිණුමේ තොරතුරු කළමනාකරණය කරන්න",
+      "displayName": "පෙන්වන නම",
+      "email": "ඊමේල් ලිපිනය",
+      "emailNote": "ඊමේල් ලිපිනය වෙනස් කළ නොහැක",
+      "phone": "දුරකථන අංකය",
+      "changePhoto": "Photo එක වෙනස් කරන්න",
+      "edit": "Edit කරන්න",
+      "save": "Save කරන්න",
+      "cancel": "Cancel",
+      "changePassword": "මුරපදය වෙනස් කරන්න",
+      "changePasswordDesc": "ඔබේ ගිණුම සුරක්ෂිතව තබා ගැනීමට මුරපදය යාවත්කාලීන කරන්න",
+      "changePasswordBtn": "මුරපදය වෙනස් කරන්න"
+    }
+  },
+  "AuthLayout": {
+    "title": "සාර්ථක ව්‍යවසායකයින් දහස් ගණනක් හා එක්වන්න",
+    "subtitle": "වර්ධනය වන ව්‍යාපාර සඳහා කූපි හොඳම platform එක වන්නේ මන්දැයි සොයා බලන්න.",
+    "testimonials": [
+      {
+        "quote": "කූපි මගේ business එක සම්පූර්ණයෙන්ම වෙනස් කළා. හිතාගන්න බැරි තරම් ඉක්මනට store එක හදාගත්තා, පළවෙනි මාසෙම මගේ විකුණුම් 200%කින් වැඩි වුණා!",
+        "name": "ජනිත් පෙරේරා",
+        "role": "TechGadgets නිර්මාතෘ"
+      },
+      {
+        "quote": "AI Marketing Studio එක නම් නියම ගේම් චේන්ජර් එකක්. designer කෙනෙක් නැතුවම, විනාඩි ගාණකින් professional social media posts හදාගන්න පුළුවන්.",
+        "name": "සඳලී සිල්වා",
+        "role": "FashionForward හිමිකාරිනී"
+      },
+      {
+        "quote": "පොඩි business එකක් කරන කෙනෙක් විදියට, කූපි වල අඩු මිල සහ බලවත් features නම් අසමසමයි. support team එකත් ඕන වෙලාවක උදව්වට ඉන්නවා.",
+        "name": "ඩේවිඩ් ප්‍රනාන්දු",
+        "role": "ArtisanCrafts නිර්මාතෘ"
+      }
+    ]
+  },
+  "AuthHeader": {
+    "title": "ඔබේ ගිණුම සාදන්න",
+    "subtitle": "ලියාපදිංචි වීමෙන්, ඔබ අපගේ",
+    "terms": "නියම සහ කොන්දේසි වලට එකඟ වේ"
+  }
+}
