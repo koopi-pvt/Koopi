@@ -86,12 +86,17 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           storeId: store?.storeId,
           storeSlug: params.slug,
+          storeName: store?.storeName || '',
+          sellerId: store?.userId || '',
+          sellerEmail: '', // Will be fetched from user data in production
           customerInfo: {
+            buyerId: 'guest', // Will be replaced with actual buyer ID when auth is implemented
             name: formData.customerName,
             email: formData.email,
             phone: formData.phone,
             address: formData.address,
             city: formData.city,
+            state: '',
             postalCode: formData.postalCode,
             country: formData.country,
           },
@@ -102,8 +107,12 @@ export default function CheckoutPage() {
             quantity: item.quantity,
             selectedAttributes: item.selectedAttributes,
             image: item.product.images?.[0] || '',
+            sku: '', // Will be populated from product variant data
           })),
           paymentMethod: formData.paymentMethod,
+          subtotal: cart.total,
+          shipping: 0, // Can be calculated based on location
+          tax: 0, // Can be calculated based on store settings
           total: cart.total,
           notes: formData.notes,
           currency: store?.currency || 'USD',
@@ -113,11 +122,16 @@ export default function CheckoutPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setOrderId(data.orderId);
+        setOrderId(data.orderNumber || data.orderId);
         setOrderPlaced(true);
         clearCart();
       } else {
-        alert(`Failed to place order: ${data.error}`);
+        // Show more detailed error message for stock issues
+        if (data.error.includes('Insufficient stock')) {
+          alert(`Stock Issue: ${data.error}\n\nPlease update your cart and try again.`);
+        } else {
+          alert(`Failed to place order: ${data.error}`);
+        }
       }
     } catch (error) {
       console.error('Error placing order:', error);

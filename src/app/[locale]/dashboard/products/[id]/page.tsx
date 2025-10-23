@@ -12,6 +12,7 @@ import { useUser } from '@/contexts/UserContext';
 import { getCurrencySymbol } from '@/utils/currency';
 import Loader from '@/components/common/Loader';
 import { useToast } from '@/contexts/ToastContext';
+import { validateProductPrices, getMinimumPrice } from '@/utils/pricing';
 
 export default function EditProductPage() {
   const router = useRouter();
@@ -37,6 +38,7 @@ export default function EditProductPage() {
     images: [],
     existingImages: [],
     variants: [],
+    variantCombinations: [],
     inventoryTracked: true,
     quantity: 0,
     lowStockThreshold: 5,
@@ -78,6 +80,7 @@ export default function EditProductPage() {
           images: [],
           existingImages: product.images || [],
           variants: product.variants || [],
+          variantCombinations: product.variantCombinations || [],
           inventoryTracked: product.inventoryTracked ?? true,
           quantity: product.quantity || 0,
           lowStockThreshold: product.lowStockThreshold || 5,
@@ -223,6 +226,22 @@ export default function EditProductPage() {
       return;
     }
 
+    // Validate minimum price requirements
+    const currencyCode = store?.currency || 'USD';
+    const priceValidation = validateProductPrices(
+      formData.price,
+      formData.variantCombinations,
+      currencyCode
+    );
+
+    if (!priceValidation.isValid) {
+      toast.error('Price Validation Failed');
+      priceValidation.errors.forEach(error => {
+        toast.error(error);
+      });
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -237,8 +256,11 @@ export default function EditProductPage() {
         status: formData.status,
         images: imageUrls,
         variants: formData.variants,
+        variantCombinations: formData.variantCombinations,
         inventoryTracked: formData.inventoryTracked,
-        quantity: formData.quantity,
+        quantity: formData.variantCombinations && formData.variantCombinations.length > 0
+          ? formData.variantCombinations.reduce((sum, c) => sum + c.stock, 0)
+          : formData.quantity,
         lowStockThreshold: formData.lowStockThreshold,
         variantStock: formData.variantStock,
         price: formData.price,
