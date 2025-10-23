@@ -3,9 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Store as StoreIcon, ShoppingCart, Menu, X, Package, User } from 'lucide-react';
+import { Store as StoreIcon, ShoppingCart, Menu, X, Package, User, LogIn, LogOut } from 'lucide-react';
 import { Store } from '@/types/store';
 import { useCart } from '@/contexts/CartContext';
+import { useBuyerAuth } from '@/contexts/BuyerAuthContext';
 import { formatPrice } from '@/utils/currency';
 
 interface StoreNavigationProps {
@@ -16,20 +17,16 @@ interface StoreNavigationProps {
 export function StoreNavigation({ store, locale }: StoreNavigationProps) {
   const pathname = usePathname();
   const { cart, updateQuantity, removeFromCart } = useCart();
+  const { buyer, isAuthenticated, logout } = useBuyerAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAccountMenuOpen, setIsAccountMenuOpen] = useState(false);
 
   const navLinks = [
     { 
       href: `/${locale}/store/${store.storeSlug}`, 
       text: 'Shop', 
       icon: Package,
-      show: true 
-    },
-    { 
-      href: `/${locale}/store/${store.storeSlug}/account`, 
-      text: 'Account', 
-      icon: User,
       show: true 
     },
   ];
@@ -99,8 +96,68 @@ export function StoreNavigation({ store, locale }: StoreNavigationProps) {
               })}
             </div>
 
-            {/* Cart & Mobile Menu */}
-            <div className="flex items-center gap-4">
+            {/* Cart, Account & Mobile Menu */}
+            <div className="flex items-center gap-3">
+              {/* Account Dropdown - Desktop */}
+              <div className="hidden md:block relative">
+                {isAuthenticated ? (
+                  <>
+                    <button
+                      onClick={() => setIsAccountMenuOpen(!isAccountMenuOpen)}
+                      className="flex items-center gap-2 p-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
+                    >
+                      <User className="w-5 h-5" />
+                      <span className="text-sm font-medium">{buyer?.name?.split(' ')[0]}</span>
+                    </button>
+                    {isAccountMenuOpen && (
+                      <>
+                        <div 
+                          className="fixed inset-0 z-40" 
+                          onClick={() => setIsAccountMenuOpen(false)}
+                        />
+                        <div className="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-lg border border-gray-200 py-2 z-50">
+                          <Link
+                            href={`/${locale}/store/${store.storeSlug}/account`}
+                            onClick={() => setIsAccountMenuOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                          >
+                            <User className="w-4 h-4" />
+                            My Account
+                          </Link>
+                          <Link
+                            href={`/${locale}/store/${store.storeSlug}/account/orders`}
+                            onClick={() => setIsAccountMenuOpen(false)}
+                            className="flex items-center gap-3 px-4 py-2 text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-colors"
+                          >
+                            <Package className="w-4 h-4" />
+                            My Orders
+                          </Link>
+                          <hr className="my-2" />
+                          <button
+                            onClick={() => {
+                              setIsAccountMenuOpen(false);
+                              logout();
+                            }}
+                            className="w-full flex items-center gap-3 px-4 py-2 text-red-600 hover:bg-red-50 transition-colors"
+                          >
+                            <LogOut className="w-4 h-4" />
+                            Logout
+                          </button>
+                        </div>
+                      </>
+                    )}
+                  </>
+                ) : (
+                  <Link
+                    href={`/${locale}/store/${store.storeSlug}/login`}
+                    className="flex items-center gap-2 px-4 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors font-medium"
+                  >
+                    <LogIn className="w-5 h-5" />
+                    Login
+                  </Link>
+                )}
+              </div>
+
               {/* Cart Button */}
               <button
                 onClick={() => setIsCartOpen(true)}
@@ -160,6 +217,48 @@ export function StoreNavigation({ store, locale }: StoreNavigationProps) {
                     </Link>
                   );
                 })}
+                
+                {/* Mobile Account Links */}
+                <hr className="my-2" />
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      href={`/${locale}/store/${store.storeSlug}/account`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors"
+                    >
+                      <User className="w-5 h-5" />
+                      My Account
+                    </Link>
+                    <Link
+                      href={`/${locale}/store/${store.storeSlug}/account/orders`}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors"
+                    >
+                      <Package className="w-5 h-5" />
+                      My Orders
+                    </Link>
+                    <button
+                      onClick={() => {
+                        setIsMenuOpen(false);
+                        logout();
+                      }}
+                      className="w-full flex items-center gap-3 px-3 py-2 text-red-600 hover:bg-red-50 rounded-lg font-medium transition-colors"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      Logout
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href={`/${locale}/store/${store.storeSlug}/login`}
+                    onClick={() => setIsMenuOpen(false)}
+                    className="flex items-center gap-3 px-3 py-2 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg font-medium transition-colors"
+                  >
+                    <LogIn className="w-5 h-5" />
+                    Login
+                  </Link>
+                )}
               </div>
             </div>
           )}

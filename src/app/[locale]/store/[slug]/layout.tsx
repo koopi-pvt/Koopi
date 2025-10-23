@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { CartProvider } from '@/contexts/CartContext';
+import { BuyerAuthProvider } from '@/contexts/BuyerAuthContext';
 
 export default function StoreLayout({
   children,
@@ -9,8 +10,10 @@ export default function StoreLayout({
   children: React.ReactNode;
 }) {
   return (
-    <CartProvider>
-      {children}
-    </CartProvider>
+    <BuyerAuthProvider>
+      <CartProvider>
+        {children}
+      </CartProvider>
+    </BuyerAuthProvider>
   );
 }
