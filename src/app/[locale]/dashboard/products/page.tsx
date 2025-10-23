@@ -9,11 +9,14 @@ import { Dropdown } from '@/components/dashboard/Dropdown';
 import { Product } from '@/types/product';
 import { useUser } from '@/contexts/UserContext';
 import { formatPrice } from '@/utils/currency';
+import Loader from '@/components/common/Loader';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function ProductsPage() {
   const t = useTranslations('Dashboard.products');
   const router = useRouter();
   const { store } = useUser();
+  const toast = useToast();
   const [allProducts, setAllProducts] = useState<Product[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -81,23 +84,19 @@ export default function ProductsPage() {
 
       if (response.ok) {
         setAllProducts(allProducts.filter(p => p.id !== productId));
-        alert(t('deleteSuccess'));
+        toast.success(t('deleteSuccess'));
       } else {
         const data = await response.json();
-        alert(t('deleteFailed') + ': ' + data.error);
+        toast.error(t('deleteFailed') + ': ' + data.error);
       }
     } catch (error) {
       console.error('Error deleting product:', error);
-      alert(t('deleteFailed'));
+      toast.error(t('deleteFailed'));
     }
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <Loader text={t('loading') || 'Loading products...'} />;
   }
 
   if (allProducts.length === 0 && !loading) {

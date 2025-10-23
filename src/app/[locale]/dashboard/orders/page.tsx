@@ -6,6 +6,8 @@ import { ShoppingCart, Package, Loader2, Eye, CheckCircle, Clock, XCircle, Truck
 import EmptyState from '@/components/dashboard/EmptyState';
 import { useUser } from '@/contexts/UserContext';
 import { formatPrice } from '@/utils/currency';
+import Loader from '@/components/common/Loader';
+import { useToast } from '@/contexts/ToastContext';
 
 interface Order {
   id: string;
@@ -30,6 +32,7 @@ interface Order {
 export default function OrdersPage() {
   const t = useTranslations('Dashboard');
   const { store } = useUser();
+  const toast = useToast();
   const [orders, setOrders] = useState<Order[]>([]);
   const [filteredOrders, setFilteredOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,12 +90,13 @@ export default function OrdersPage() {
         if (selectedOrder && selectedOrder.orderId === orderId) {
           setSelectedOrder({ ...selectedOrder, orderStatus: newStatus });
         }
+        toast.success('Order status updated successfully');
       } else {
-        alert('Failed to update order status');
+        toast.error('Failed to update order status');
       }
     } catch (error) {
       console.error('Error updating order status:', error);
-      alert('Failed to update order status');
+      toast.error('Failed to update order status');
     } finally {
       setUpdatingStatus(false);
     }
@@ -119,11 +123,7 @@ export default function OrdersPage() {
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <Loader2 className="w-12 h-12 animate-spin text-blue-600" />
-      </div>
-    );
+    return <Loader text="Loading orders..." />;
   }
 
   if (orders.length === 0) {

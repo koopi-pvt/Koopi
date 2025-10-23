@@ -6,6 +6,8 @@ import { useUser } from '@/contexts/UserContext';
 import { Upload, Loader2, Image as ImageIcon, Power, Eye, EyeOff, Info } from 'lucide-react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { useToast } from '@/contexts/ToastContext';
+import Loader from '@/components/common/Loader';
 
 // Dynamic import for React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import('react-quill-new'), { ssr: false });
@@ -13,6 +15,7 @@ import 'react-quill-new/dist/quill.snow.css';
 
 export default function StoreSettingsPage() {
   const { user } = useUser();
+  const toast = useToast();
   const [store, setStore] = useState<Store | null>(null);
   const [loading, setLoading] = useState(true);
   const [uploadingLogo, setUploadingLogo] = useState(false);
@@ -86,13 +89,13 @@ export default function StoreSettingsPage() {
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      alert('Please select an image file');
+      toast.error('Please select an image file');
       return;
     }
 
     // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      alert('Image size must be less than 5MB');
+      toast.error('Image size must be less than 5MB');
       return;
     }
 
@@ -118,10 +121,10 @@ export default function StoreSettingsPage() {
         setStore({ ...store, logoUrl: data.logoUrl });
       }
       
-      alert('Logo uploaded successfully!');
+      toast.success('Logo uploaded successfully!');
     } catch (error) {
       console.error('Error uploading logo:', error);
-      alert('Failed to upload logo. Please try again.');
+      toast.error('Failed to upload logo. Please try again.');
     } finally {
       setUploadingLogo(false);
       if (logoInputRef.current) {
@@ -145,26 +148,22 @@ export default function StoreSettingsPage() {
       });
 
       if (response.ok) {
-        alert('Store updated successfully!');
+        toast.success('Store updated successfully!');
         fetchStoreData(); // Refresh data
       } else {
         const data = await response.json();
-        alert(`Failed to update store: ${data.error}`);
+        toast.error(`Failed to update store: ${data.error}`);
       }
     } catch (error) {
       console.error('Error updating store:', error);
-      alert('An error occurred while updating the store.');
+      toast.error('An error occurred while updating the store.');
     } finally {
       setSaving(false);
     }
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="w-12 h-12 animate-spin text-blue-600" />
-      </div>
-    );
+    return <Loader text="Loading store settings..." />;
   }
 
   if (!store) {

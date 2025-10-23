@@ -5,10 +5,13 @@ import { useTranslations } from 'next-intl';
 import { DollarSign, Loader2, Save, CreditCard, Banknote } from 'lucide-react';
 import { useUser } from '@/contexts/UserContext';
 import { CURRENCIES } from '@/utils/currency';
+import Loader from '@/components/common/Loader';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function SettingsPage() {
   const t = useTranslations('Dashboard');
   const { store } = useUser();
+  const toast = useToast();
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [currency, setCurrency] = useState('USD');
@@ -51,27 +54,23 @@ export default function SettingsPage() {
       });
 
       if (response.ok) {
-        alert('Currency settings saved successfully!');
+        toast.success('Currency settings saved successfully!');
         // Refresh the page to update the currency throughout the app
-        window.location.reload();
+        setTimeout(() => window.location.reload(), 1000);
       } else {
         const data = await response.json();
-        alert(`Failed to save settings: ${data.error}`);
+        toast.error(`Failed to save settings: ${data.error}`);
       }
     } catch (error) {
       console.error('Error saving settings:', error);
-      alert('An error occurred while saving settings.');
+      toast.error('An error occurred while saving settings.');
     } finally {
       setSaving(false);
     }
   };
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <Loader2 className="w-12 h-12 animate-spin text-blue-600" />
-      </div>
-    );
+    return <Loader text="Loading settings..." />;
   }
 
   return (

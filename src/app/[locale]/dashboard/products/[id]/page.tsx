@@ -10,12 +10,15 @@ import 'react-quill-new/dist/quill.snow.css';
 import { ProductFormData, ProductVariant, Product } from '@/types/product';
 import { useUser } from '@/contexts/UserContext';
 import { getCurrencySymbol } from '@/utils/currency';
+import Loader from '@/components/common/Loader';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function EditProductPage() {
   const router = useRouter();
   const params = useParams();
   const productId = params.id as string;
   const { store } = useUser();
+  const toast = useToast();
   
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -86,12 +89,12 @@ export default function EditProductPage() {
         });
         setImageUrls(product.images || []);
       } else {
-        alert('Failed to fetch product: ' + data.error);
+        toast.error('Failed to fetch product: ' + data.error);
         router.push('/dashboard/products');
       }
     } catch (error) {
       console.error('Error fetching product:', error);
-      alert('Failed to fetch product');
+      toast.error('Failed to fetch product');
       router.push('/dashboard/products');
     } finally {
       setFetchingProduct(false);
@@ -135,14 +138,14 @@ export default function EditProductPage() {
         if (response.ok) {
           uploadedUrls.push(data.url);
         } else {
-          alert(`Failed to upload ${file.name}: ${data.error}`);
+          toast.error(`Failed to upload ${file.name}: ${data.error}`);
         }
       }
 
       setImageUrls([...imageUrls, ...uploadedUrls]);
     } catch (error) {
       console.error('Error uploading images:', error);
-      alert('Failed to upload images');
+      toast.error('Failed to upload images');
     } finally {
       setUploadingImage(false);
     }
@@ -158,7 +161,7 @@ export default function EditProductPage() {
 
   const addVariant = () => {
     if (!newVariantName || !newVariantOptions) {
-      alert('Please enter variant name and options');
+      toast.warning('Please enter variant name and options');
       return;
     }
 
@@ -211,12 +214,12 @@ export default function EditProductPage() {
   const handleSubmit = async () => {
     // Validation
     if (!formData.name || !formData.longDescription) {
-      alert('Please fill in all required fields');
+      toast.warning('Please fill in all required fields');
       return;
     }
 
     if (formData.price <= 0) {
-      alert('Price must be greater than 0');
+      toast.warning('Price must be greater than 0');
       return;
     }
 
@@ -255,14 +258,14 @@ export default function EditProductPage() {
       const data = await response.json();
 
       if (response.ok) {
-        alert('Product updated successfully!');
+        toast.success('Product updated successfully!');
         router.push('/dashboard/products');
       } else {
-        alert('Failed to update product: ' + data.error);
+        toast.error('Failed to update product: ' + data.error);
       }
     } catch (error) {
       console.error('Error updating product:', error);
-      alert('Failed to update product');
+      toast.error('Failed to update product');
     } finally {
       setLoading(false);
     }
@@ -664,11 +667,7 @@ export default function EditProductPage() {
   );
 
   if (fetchingProduct) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
+    return <Loader text="Loading product..." />;
   }
 
   return (

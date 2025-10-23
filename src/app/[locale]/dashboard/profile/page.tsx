@@ -5,10 +5,12 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { User, Mail, Phone, Camera, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
 import { useUser } from '@/contexts/UserContext';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function ProfilePage() {
   const t = useTranslations('Dashboard');
   const { user, updateUser } = useUser();
+  const toast = useToast();
   const [editing, setEditing] = useState(false);
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -58,10 +60,10 @@ export default function ProfilePage() {
         phoneNumber: profile.phoneNumber,
       });
       setEditing(false);
-      alert('Profile updated successfully!');
+      toast.success('Profile updated successfully!');
     } catch (error) {
       console.error('Error saving profile:', error);
-      alert('Failed to save profile. Please try again.');
+      toast.error('Failed to save profile. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -86,13 +88,13 @@ export default function ProfilePage() {
 
     // Validate file type
     if (!file.type.startsWith('image/')) {
-      alert('Please select an image file');
+      toast.error('Please select an image file');
       return;
     }
 
     // Validate file size (max 5MB)
     if (file.size > 5 * 1024 * 1024) {
-      alert('Image size must be less than 5MB');
+      toast.error('Image size must be less than 5MB');
       return;
     }
 
@@ -115,10 +117,10 @@ export default function ProfilePage() {
       
       // Update user context
       await updateUser({ photoURL: data.photoURL });
-      alert('Profile photo updated successfully!');
+      toast.success('Profile photo updated successfully!');
     } catch (error) {
       console.error('Error uploading photo:', error);
-      alert('Failed to upload photo. Please try again.');
+      toast.error('Failed to upload photo. Please try again.');
     } finally {
       setUploading(false);
     }

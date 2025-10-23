@@ -15,11 +15,13 @@ import { DragDropImageUpload } from '@/components/dashboard/DragDropImageUpload'
 import { useUser } from '@/contexts/UserContext';
 import { storage } from '@/lib/firebase';
 import { getCurrencySymbol } from '@/utils/currency';
+import { useToast } from '@/contexts/ToastContext';
 
 export default function NewProductPage() {
   const router = useRouter();
   const t = useTranslations('Dashboard.products.add');
   const { user, store } = useUser();
+  const toast = useToast();
   const [currentStep, setCurrentStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState<Product[]>([]);
@@ -90,14 +92,14 @@ export default function NewProductPage() {
         if (response.ok) {
           uploadedUrls.push(data.url);
         } else {
-          alert(`Failed to upload ${file.name}: ${data.error}`);
+          toast.error(`Failed to upload ${file.name}: ${data.error}`);
         }
       }
 
       setImageUrls([...imageUrls, ...uploadedUrls]);
     } catch (error) {
       console.error('Error uploading images:', error);
-      alert('Failed to upload images');
+      toast.error('Failed to upload images');
     } finally {
       setUploadingImage(false);
     }
@@ -133,12 +135,12 @@ export default function NewProductPage() {
 
   const handleSave = async () => {
     if (!formData.name || !formData.longDescription) {
-      alert(t('requiredFields'));
+      toast.warning(t('requiredFields'));
       return;
     }
   
     if (formData.price <= 0) {
-      alert(t('priceError'));
+      toast.warning(t('priceError'));
       return;
     }
   
@@ -165,14 +167,14 @@ export default function NewProductPage() {
       const data = await response.json();
   
       if (response.ok) {
-        alert(t('createSuccess'));
+        toast.success(t('createSuccess'));
         router.push('/dashboard/products');
       } else {
-        alert(t('createFailed') + ': ' + data.error);
+        toast.error(t('createFailed') + ': ' + data.error);
       }
     } catch (error) {
       console.error('Error creating product:', error);
-      alert(t('createFailed'));
+      toast.error(t('createFailed'));
     } finally {
       setLoading(false);
     }
