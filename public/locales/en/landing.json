@@ -1,11 +1,5 @@
 {
-  "nav": {
-    "features": "Features",
-    "pricing": "Pricing",
-    "about": "About"
-  },
   "hero": {
-    "badge": "🇱🇰 Built for Sri Lanka",
     "headline": "Your Store,",
     "headlineAccent": "Your Rules",
     "description": "The complete e-commerce platform built for Sri Lankan entrepreneurs. Sell online, manage inventory, accept local payments, and grow your business—all from one powerful platform.",

@@ -1,14 +1,17 @@
+import React from 'react';
+
+interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'className'> {
+  children: React.ReactNode;
+  className?: string;
+  hover?: boolean;
+}
+
 export default function Card({ 
   children, 
   className = '',
   hover = false,
   ...props 
-}: { 
-  children: React.ReactNode;
-  className?: string;
-  hover?: boolean;
-  [key: string]: any;
-}) {
+}: CardProps) {
   return (
     <div 
       className={`bg-white rounded-2xl border border-gray-100 p-6 ${

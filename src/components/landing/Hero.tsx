@@ -1,10 +1,10 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 
 export default function Hero() {
-    const { t } = useLanguage();
+    const { t } = useTranslation('landing');
 
     return (
         <>
@@ -18,24 +18,14 @@ export default function Hero() {
                 </div>
 
                 <div className="max-w-7xl mx-auto text-center space-y-10">
-                    {/* Badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 border border-indigo-100 rounded-full">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
-            </span>
-                        <span className="text-sm font-medium text-indigo-900">
-              {t.hero.badge}
-            </span>
-                    </div>
 
                     {/* Main Headline */}
                     <div className="space-y-6">
                         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-gray-900 leading-[1.1] tracking-tight">
-                            {t.hero.headline}<br />
+                            {t('hero.headline')}<br />
                             <span className="relative inline-block">
                 <span className="bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 bg-clip-text text-transparent">
-                  {t.hero.headlineAccent}
+                  {t('hero.headlineAccent')}
                 </span>
                 <svg className="absolute -bottom-2 left-0 w-full" height="12" viewBox="0 0 300 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M2 10C50 5 100 2 150 5C200 8 250 5 298 10" stroke="url(#gradient)" strokeWidth="3" strokeLinecap="round"/>
@@ -51,7 +41,7 @@ export default function Hero() {
                         </h1>
 
                         <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            {t.hero.description}
+                            {t('hero.description')}
                         </p>
                     </div>
 
@@ -61,7 +51,7 @@ export default function Hero() {
                             href="/signup"
                             className="group px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-200 flex items-center gap-2"
                         >
-                            {t.hero.ctaPrimary}
+                            {t('hero.ctaPrimary')}
                             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
@@ -71,7 +61,7 @@ export default function Hero() {
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                             </svg>
-                            {t.hero.ctaSecondary}
+                            {t('hero.ctaSecondary')}
                         </button>
                     </div>
 
@@ -79,15 +69,15 @@ export default function Hero() {
                     <div className="grid grid-cols-3 gap-8 pt-12 max-w-3xl mx-auto">
                         <div className="text-center">
                             <div className="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent">2K+</div>
-                            <div className="text-sm text-gray-600 mt-1">{t.hero.stats.stores}</div>
+                            <div className="text-sm text-gray-600 mt-1">{t('hero.stats.stores')}</div>
                         </div>
                         <div className="text-center">
                             <div className="text-4xl font-bold bg-gradient-to-r from-violet-600 to-purple-600 bg-clip-text text-transparent">50K+</div>
-                            <div className="text-sm text-gray-600 mt-1">{t.hero.stats.products}</div>
+                            <div className="text-sm text-gray-600 mt-1">{t('hero.stats.products')}</div>
                         </div>
                         <div className="text-center">
                             <div className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">99.9%</div>
-                            <div className="text-sm text-gray-600 mt-1">{t.hero.stats.uptime}</div>
+                            <div className="text-sm text-gray-600 mt-1">{t('hero.stats.uptime')}</div>
                         </div>
                     </div>
                 </div>
@@ -98,10 +88,10 @@ export default function Hero() {
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-                            {t.features.title}
+                            {t('features.title')}
                         </h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            {t.features.subtitle}
+                            {t('features.subtitle')}
                         </p>
                     </div>
 
@@ -114,10 +104,10 @@ export default function Hero() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                {t.features.quickSetup.title}
+                                {t('features.quickSetup.title')}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                {t.features.quickSetup.description}
+                                {t('features.quickSetup.description')}
                             </p>
                         </div>
 
@@ -129,10 +119,10 @@ export default function Hero() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                {t.features.localPayments.title}
+                                {t('features.localPayments.title')}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                {t.features.localPayments.description}
+                                {t('features.localPayments.description')}
                             </p>
                         </div>
 
@@ -144,10 +134,10 @@ export default function Hero() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                {t.features.inventory.title}
+                                {t('features.inventory.title')}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                {t.features.inventory.description}
+                                {t('features.inventory.description')}
                             </p>
                         </div>
 
@@ -159,10 +149,10 @@ export default function Hero() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                {t.features.analytics.title}
+                                {t('features.analytics.title')}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                {t.features.analytics.description}
+                                {t('features.analytics.description')}
                             </p>
                         </div>
 
@@ -174,10 +164,10 @@ export default function Hero() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                {t.features.mobile.title}
+                                {t('features.mobile.title')}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                {t.features.mobile.description}
+                                {t('features.mobile.description')}
                             </p>
                         </div>
 
@@ -189,10 +179,10 @@ export default function Hero() {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-900 mb-3">
-                                {t.features.support.title}
+                                {t('features.support.title')}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
-                                {t.features.support.description}
+                                {t('features.support.description')}
                             </p>
                         </div>
                     </div>

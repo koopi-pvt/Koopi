@@ -1,16 +1,19 @@
+import React from 'react';
+
+interface ButtonProps extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'className'> {
+  children: React.ReactNode;
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
 export default function Button({ 
   children, 
   variant = 'primary', 
   size = 'md',
   className = '',
   ...props 
-}: { 
-  children: React.ReactNode;
-  variant?: 'primary' | 'secondary' | 'ghost';
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-  [key: string]: any;
-}) {
+}: ButtonProps) {
   const baseStyles = 'font-medium rounded-xl transition-all duration-200 inline-flex items-center justify-center';
   
   const variants = {

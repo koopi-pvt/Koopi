@@ -1,9 +1,9 @@
 'use client';
 
-import { useLanguage } from '@/contexts/LanguageContext';
+import { useTranslation } from 'react-i18next';
 
 export default function Footer() {
-  const { t, language } = useLanguage();
+  const { t } = useTranslation('landing');
   const currentYear = new Date().getFullYear();
 
   return (
@@ -17,7 +17,7 @@ export default function Footer() {
           
           {/* Tagline */}
           <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 max-w-2xl mx-auto px-4">
-            {t.footer.tagline}
+            {t('footer.tagline')}
           </p>
 
           {/* Social Links */}
@@ -53,7 +53,7 @@ export default function Footer() {
 
           {/* Copyright */}
           <p className="text-xs sm:text-sm text-gray-500">
-            © {currentYear} Koopi. {t.footer.rights}
+            © {currentYear} Koopi. {t('footer.rights')}
           </p>
         </div>
       </div>

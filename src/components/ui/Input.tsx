@@ -1,14 +1,17 @@
+import React from 'react';
+
+interface InputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'className'> {
+  label?: string;
+  error?: string;
+  className?: string;
+}
+
 export default function Input({ 
   label,
   error,
   className = '',
   ...props 
-}: { 
-  label?: string;
-  error?: string;
-  className?: string;
-  [key: string]: any;
-}) {
+}: InputProps) {
   return (
     <div className="w-full">
       {label && (
