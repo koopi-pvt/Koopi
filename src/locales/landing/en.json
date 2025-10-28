@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "features": "Features",
+    "pricing": "Pricing",
+    "about": "About"
+  },
+  "hero": {
+    "badge": "🇱🇰 Built for Sri Lanka",
+    "headline": "Your Store,",
+    "headlineAccent": "Your Rules",
+    "description": "The complete e-commerce platform built for Sri Lankan entrepreneurs. Sell online, manage inventory, accept local payments, and grow your business—all from one powerful platform.",
+    "ctaPrimary": "Start Free Trial",
+    "ctaSecondary": "Watch Demo",
+    "stats": {
+      "stores": "Active Stores",
+      "products": "Products Sold",
+      "uptime": "Uptime"
+    }
+  },
+  "features": {
+    "title": "Everything You Need to Succeed",
+    "subtitle": "Powerful features designed for Sri Lankan entrepreneurs",
+    "quickSetup": {
+      "title": "Quick Setup",
+      "description": "Get your store online in minutes with our easy setup wizard"
+    },
+    "localPayments": {
+      "title": "Local Payments",
+      "description": "Accept LKR payments with integrated local payment gateways"
+    },
+    "inventory": {
+      "title": "Smart Inventory",
+      "description": "Track stock levels and get alerts when inventory runs low"
+    },
+    "analytics": {
+      "title": "Analytics Dashboard",
+      "description": "Monitor sales, track growth, and make data-driven decisions"
+    },
+    "mobile": {
+      "title": "Mobile Ready",
+      "description": "Manage your store on the go with our mobile app"
+    },
+    "support": {
+      "title": "24/7 Support",
+      "description": "Get help anytime with our dedicated support team"
+    }
+  },
+  "footer": {
+    "tagline": "Empowering Sri Lankan businesses to thrive online",
+    "rights": "All rights reserved."
+  }
+}
