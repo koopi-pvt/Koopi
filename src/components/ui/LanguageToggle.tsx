@@ -5,27 +5,32 @@ import { useTranslation } from "react-i18next";
 
 export default function LanguageToggle({ className = "" }: { className?: string }) {
     const { i18n } = useTranslation();
-    const current = i18n.language?.startsWith("si") ? "si" : "en";
 
-    const change = async (lang: "en" | "si") => {
-        if (current !== lang) await i18n.changeLanguage(lang);
+    const changeLanguage = (lng: string) => {
+        i18n.changeLanguage(lng);
     };
 
     return (
-        <div className={`inline-flex items-center gap-1 p-1 rounded-full border border-gray-200 bg-white ${className}`}>
+        <div className={`flex items-center bg-gray-100 rounded-xl p-1 ${className}`}>
             <button
-                onClick={() => change("en")}
-                className={`px-3 py-1 text-sm rounded-full transition-colors ${current === "en" ? "bg-gray-900 text-white" : "text-gray-700 hover:bg-gray-100"}`}
-                aria-pressed={current === "en"}
+                onClick={() => changeLanguage('en')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    i18n.language === 'en'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                }`}
             >
                 EN
             </button>
             <button
-                onClick={() => change("si")}
-                className={`px-3 py-1 text-sm rounded-full transition-colors ${current === "si" ? "bg-gray-900 text-white" : "text-gray-700 hover:bg-gray-100"}`}
-                aria-pressed={current === "si"}
+                onClick={() => changeLanguage('si')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                    i18n.language === 'si'
+                        ? 'bg-white text-gray-900 shadow-sm'
+                        : 'text-gray-600 hover:text-gray-900'
+                }`}
             >
-                SI
+                සිං
             </button>
         </div>
     );
