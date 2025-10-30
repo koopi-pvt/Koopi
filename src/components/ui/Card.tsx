@@ -14,7 +14,7 @@ export default function Card({
 }: CardProps) {
   return (
     <div 
-      className={`bg-white rounded-2xl border border-gray-100 p-6 ${
+      className={`bg-white rounded-xl sm:rounded-2xl border border-gray-100 p-5 sm:p-6 ${
         hover ? 'hover:border-indigo-200 hover:shadow-xl hover:-translate-y-2 transition-all duration-300' : ''
       } ${className}`}
       {...props}

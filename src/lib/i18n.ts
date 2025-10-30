@@ -4,6 +4,8 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 import enLanding from '@/../public/locales/en/landing.json';
 import siLanding from '@/../public/locales/si/landing.json';
+import enAuth from '@/../public/locales/en/auth.json';
+import siAuth from '@/../public/locales/si/auth.json';
 
 i18n
   .use(LanguageDetector)
@@ -12,9 +14,11 @@ i18n
     resources: {
       en: {
         landing: enLanding,
+        auth: enAuth,
       },
       si: {
         landing: siLanding,
+        auth: siAuth,
       },
     },
     fallbackLng: 'en',

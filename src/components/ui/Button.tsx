@@ -14,7 +14,7 @@ export default function Button({
   className = '',
   ...props 
 }: ButtonProps) {
-  const baseStyles = 'font-medium rounded-xl transition-all duration-200 inline-flex items-center justify-center';
+  const baseStyles = 'font-medium rounded-lg sm:rounded-xl transition-all duration-200 inline-flex items-center justify-center';
   
   const variants = {
     primary: 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white hover:shadow-lg hover:scale-105',
@@ -23,9 +23,9 @@ export default function Button({
   };
   
   const sizes = {
-    sm: 'px-4 py-2 text-sm',
-    md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    sm: 'px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm',
+    md: 'px-4 py-2.5 sm:px-6 sm:py-3 text-sm sm:text-base',
+    lg: 'px-6 py-3 sm:px-8 sm:py-4 text-base sm:text-lg'
   };
   
   return (
