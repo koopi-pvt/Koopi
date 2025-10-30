@@ -716,7 +716,7 @@ export default function SignupPage() {
                                         </div>
                                     </div>
                                     <p className="text-indigo-100 text-sm">
-                                        Track sales, monitor growth, and make data-driven decisions
+                                        Track saless, monitor growth, and make data-driven decisions
                                     </p>
                                 </div>
                             </div>
